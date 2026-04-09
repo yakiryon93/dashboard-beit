@@ -383,6 +383,2319 @@
 
   <!-- ===== BUREAUCRACY ===== -->
   <div id="section-bureaucracy" class="section">
+    <p style="color:var(--gray-500);font-size:0.88rem;margin-bottom:16px;text-align:center">כלל ההיבטים המנהליים והפיננסיים הנדרשים לצורך הקמת הבית והפעלתו התקינה.</p>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header">
+          <h2>&#128203; משימות פעילות</h2>
+          <button class="btn btn-primary" onclick="openTaskModal(null,'bureaucracy')">+ הוסף משימה</button>
+        </div>
+        <div class="card-body">
+          <div id="burActiveEmpty" class="empty-state" style="display:none"><div class="icon">&#127942;</div><p>הכל בוצע!</p></div>
+          <table id="burActiveTable">
+            <thead><tr><th>משימה</th><th>פירוט</th><th>סטטוס</th><th>פעולות</th></tr></thead>
+            <tbody id="burActiveBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2>&#9989; משימות שבוצעו</h2>
+        </div>
+        <div class="card-body">
+          <div id="burDoneEmpty" class="empty-state"><div class="icon">&#128203;</div><p>עדיין אין משימות שהושלמו</p></div>
+          <table id="burDoneTable" style="display:none">
+            <thead><tr><th>משימה</th><th>פירוט</th><th>הושלמה</th><th>פעולות</th></tr></thead>
+            <tbody id="burDoneBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SUPPLIERS ===== -->
+  <div id="section-suppliers" class="section">
+    <div class="card">
+      <div class="card-header">
+        <h2>&#128188; ספקים ואנשי מקצוע</h2>
+        <button class="btn btn-primary" onclick="openSupplierModal()">+ הוסף ספק</button>
+      </div>
+      <div class="card-body">
+        <div id="suppliersTableContainer">
+          <table>
+            <thead>
+              <tr><th>ספק</th><th>איש קשר</th><th>תחום</th><th>מועד הגעה</th><th>הצעת מחיר</th><th>סטטוס</th><th>פעולות</th></tr>
+            </thead>
+            <tbody id="suppliersBody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="suppliersEmpty" style="display:none">
+          <div class="icon">&#128119;</div><p>אין ספקים רשומים</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FUTURE TASKS ===== -->
+  <div id="section-tasks" class="section">
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header">
+          <h2>&#9989; משימות פעילות</h2>
+          <button class="btn btn-primary" onclick="openTaskModal(null,'future')">+ הוסף משימה</button>
+        </div>
+        <div class="card-body">
+          <div id="futureActiveEmpty" class="empty-state" style="display:none"><div class="icon">&#127942;</div><p>אין משימות פעילות — הכל בוצע!</p></div>
+          <table id="futureActiveTable">
+            <thead><tr><th>משימה</th><th>פירוט</th><th>סטטוס</th><th>פעולות</th></tr></thead>
+            <tbody id="futureActiveBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2>&#9989; משימות שבוצעו</h2>
+        </div>
+        <div class="card-body">
+          <div id="futureDoneEmpty" class="empty-state"><div class="icon">&#128203;</div><p>עדיין אין משימות שהושלמו</p></div>
+          <table id="futureDoneTable" style="display:none">
+            <thead><tr><th>משימה</th><th>פירוט</th><th>הושלמה</th><th>פעולות</th></tr></thead>
+            <tbody id="futureDoneBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TEAM ===== -->
+  <div id="section-team" class="section">
+    <div class="team-note">
+      <strong>&#128101; בניית צוות</strong><br><br>
+      הקמת צוות מקצועי ומסור היא מרכיב מרכזי בהצלחת פעילות הבית. תחום זה כולל איתור, גיוס והכשרה של אנשי צוות בתחומים רלוונטיים כגון שיקום, תפעול, לוגיסטיקה וניהול.<br><br>
+      יש להגדיר תפקידים ותחומי אחריות בצורה ברורה ולוודא חיבור לערכי העמותה ולחזון הפרויקט.
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>&#128100; חברי צוות</h2>
+        <button class="btn btn-primary" onclick="openTeamModal()">+ הוסף חבר צוות</button>
+      </div>
+      <div class="card-body">
+        <div id="teamTableContainer" style="display:none">
+          <table>
+            <thead><tr><th>שם</th><th>תפקיד</th><th>טלפון</th><th>אימייל</th><th>הערות</th><th>פעולות</th></tr></thead>
+            <tbody id="teamBody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="teamEmpty">
+          <div class="icon">&#128101;</div><p>טרם הוזנו חברי צוות. לחץ "הוסף חבר צוות" להתחיל</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TIMELINE ===== -->
+  <div id="section-timeline" class="section">
+    <div class="card">
+      <div class="card-header"><h2>&#128197; לוח זמנים - ציר כרונולוגי</h2></div>
+      <div class="card-body" id="timelineContainer">
+        <div class="empty-state" id="timelineEmpty" style="display:none">
+          <div class="icon">&#128338;</div><p>אין אירועים בלוח הזמנים</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SETTINGS ===== -->
+  <div id="section-settings" class="section">
+    <div class="card">
+      <div class="card-header"><h2>&#9881;&#65039; הגדרות פרויקט</h2></div>
+      <div class="card-body">
+        <div class="form-group">
+          <label>שם הפרויקט</label>
+          <input type="text" id="settingName" value="הקמת הבית בירושלים">
+        </div>
+        <div class="form-group">
+          <label>תיאור</label>
+          <textarea id="settingDesc" rows="4">הקמת הבית בירושלים מהווה מהלך אסטרטגי מרכזי בפעילות העמותה, שמטרתו להרחיב ולהעמיק את המענה הניתן לפצועי ונכי צה"ל.</textarea>
+        </div>
+        <div class="form-group">
+          <label>תאריך התחלה</label>
+          <input type="date" id="settingStart">
+        </div>
+        <div class="form-group">
+          <label>תאריך סיום משוער</label>
+          <input type="date" id="settingEnd">
+        </div>
+        <button class="btn btn-primary" onclick="saveSettings()">&#128190; שמור הגדרות</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Task Modal -->
+<div class="modal-overlay" id="taskModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="taskModalTitle">הוספת משימה</h3>
+      <button class="modal-close" onclick="closeModal('taskModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>שם המשימה *</label>
+        <input type="text" id="taskName">
+      </div>
+      <div class="form-group">
+        <label>פירוט</label>
+        <textarea id="taskDetail"></textarea>
+      </div>
+      <div class="form-group">
+        <label>סטטוס</label>
+        <select id="taskStatus">
+          <option value="progress">בתהליך</option>
+          <option value="done">הושלם</option>
+          <option value="future">עתידי</option>
+          <option value="pending">ממתין</option>
+        </select>
+      </div>
+      <input type="hidden" id="taskSection" value="bureaucracy">
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="saveTask()">&#128190; שמור</button>
+      <button class="btn btn-outline" onclick="closeModal('taskModal')">ביטול</button>
+    </div>
+  </div>
+</div>
+
+<!-- Supplier Modal -->
+<div class="modal-overlay" id="supplierModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="supplierModalTitle">הוספת ספק</h3>
+      <button class="modal-close" onclick="closeModal('supplierModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>שם ספק / חברה *</label>
+        <input type="text" id="supplierName">
+      </div>
+      <div class="form-group">
+        <label>איש קשר</label>
+        <input type="text" id="supplierContact">
+      </div>
+      <div class="form-group">
+        <label>טלפון</label>
+        <input type="tel" id="supplierPhone">
+      </div>
+      <div class="form-group">
+        <label>תחום פעילות</label>
+        <input type="text" id="supplierField">
+      </div>
+      <div class="form-group">
+        <label>מועד הגעה</label>
+        <input type="text" id="supplierDate" placeholder="תאריך ושעה">
+      </div>
+      <div class="form-group">
+        <label>הצעת מחיר</label>
+        <select id="supplierQuote">
+          <option value="ממתינים">ממתינים</option>
+          <option value="התקבלה">התקבלה</option>
+          <option value="אושרה">אושרה</option>
+          <option value="לא נדרש">לא נדרש</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>סטטוס</label>
+        <select id="supplierStatus">
+          <option value="progress">בתהליך</option>
+          <option value="done">הושלם</option>
+          <option value="future">עתידי</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>הערות</label>
+        <textarea id="supplierNotes"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="saveSupplier()">&#128190; שמור</button>
+      <button class="btn btn-outline" onclick="closeModal('supplierModal')">ביטול</button>
+    </div>
+  </div>
+</div>
+
+<!-- Team Modal -->
+<div class="modal-overlay" id="teamModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="teamModalTitle">הוספת חבר צוות</h3>
+      <button class="modal-close" onclick="closeModal('teamModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>שם *</label>
+        <input type="text" id="teamName">
+      </div>
+      <div class="form-group">
+        <label>תפקיד</label>
+        <input type="text" id="teamRole">
+      </div>
+      <div class="form-group">
+        <label>טלפון</label>
+        <input type="tel" id="teamPhone">
+      </div>
+      <div class="form-group">
+        <label>אימייל</label>
+        <input type="email" id="teamEmail">
+      </div>
+      <div class="form-group">
+        <label>הערות</label>
+        <textarea id="teamNotes"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="saveTeamMember()">&#128190; שמור</button>
+      <button class="btn btn-outline" onclick="closeModal('teamModal')">ביטול</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== DATA WITH PRE-POPULATED INFO =====
+let appData = {
+  project: {
+    name: 'הקמת הבית בירושלים',
+    desc: 'הקמת הבית בירושלים מהווה מהלך אסטרטגי מרכזי בפעילות העמותה, שמטרתו להרחיב ולהעמיק את המענה הניתן לפצועי ונכי צה"ל.',
+    start: '', end: ''
+  },
+  bureaucracy: [
+    { id: 'b1', name: 'העברת חשבון חשמל', detail: 'שינוי משלמים והגדרת אמצעי תשלום', status: 'progress' },
+    { id: 'b2', name: 'העברת חשבון מים', detail: 'שינוי משלמים והגדרת אמצעי תשלום', status: 'progress' },
+    { id: 'b3', name: 'העברת חשבון מעלית', detail: 'שינוי משלמים והסדרת תחזוקה שוטפת', status: 'progress' },
+    { id: 'b4', name: 'העברת חשבון גז', detail: 'שינוי משלמים והגדרת ספק פעיל', status: 'progress' },
+    { id: 'b5', name: 'ביטוח מבנה', detail: 'הסדרת פוליסה על שם העמותה', status: 'progress' },
+    { id: 'b6', name: 'קו חירום למעלית (בזק)', detail: 'פתיחת/העברת קו חירום ועדכון משלמים', status: 'progress' },
+    { id: 'b7', name: 'ארנונה', detail: 'העברה על שם העמותה', status: 'done' }
+  ],
+  suppliers: [
+    { id: 's1', name: 'דור (תקשורת)', contact: 'דור', phone: '0504441595', field: 'אינטרנט ותקשורת', date: '12.4.26', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's2', name: 'דורון פרגולות', contact: 'דורון', phone: '0546483942', field: 'פרגולה למרפסת', date: '12.4.26 10:00-11:00', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's3', name: 'אלעד אופיר', contact: 'אלעד', phone: '0536240422', field: 'שיפוצים וגבס', date: '12.4.26 12:00', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's4', name: 'נתנאל חשמל', contact: 'נתנאל', phone: '0536805065', field: 'בדיקת לוחות חשמל', date: '12.4.26 11:00', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's5', name: 'רמי אנרג\'ים', contact: 'רמי', phone: '0525707062', field: 'חדר כושר', date: 'מידות נשלחות', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's6', name: 'סיגל ניקיון', contact: 'סיגל', phone: '0509883988', field: 'ניקיון', date: 'לא נקבע', quote: 'לא נדרש', status: 'future', notes: '' }
+  ],
+  futureTasks: [
+    { id: 'f1', name: 'הפעלת הבריכה', detail: 'הסדרת תפעול ואישורים', status: 'progress' },
+    { id: 'f2', name: 'הזמנת מטפים', detail: 'דרישות ביטוח', status: 'done' },
+    { id: 'f3', name: 'הקמת סאונות', detail: 'תכנון והצעות מחיר', status: 'progress' },
+    { id: 'f4', name: 'קבלת הצעות מחיר נוספות', detail: 'השוואת ספקים', status: 'progress' }
+  ],
+  team: []
+};
+
+let editingId = null;
+let editingSection = '';
+
+// ===== NAV =====
+function showSection(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('section-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ===== MODALS =====
+function closeModal(id) { document.getElementById(id).classList.remove('active'); editingId = null; }
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) { o.classList.remove('active'); editingId = null; } });
+});
+
+function statusBadge(s) {
+  const map = {
+    progress: '<span class="badge badge-progress">בתהליך</span>',
+    done: '<span class="badge badge-done">הושלם</span>',
+    future: '<span class="badge badge-future">עתידי</span>',
+    pending: '<span class="badge badge-pending">ממתין</span>'
+  };
+  return map[s] || s;
+}
+
+// ===== TASKS =====
+function openTaskModal(id, section) {
+  editingSection = section || 'bureaucracy';
+  document.getElementById('taskSection').value = editingSection;
+  editingId = id || null;
+  document.getElementById('taskModalTitle').textContent = id ? 'עריכת משימה' : 'הוספת משימה';
+  if (id) {
+    const list = editingSection === 'bureaucracy' ? appData.bureaucracy : appData.futureTasks;
+    const item = list.find(x => x.id === id);
+    if (item) {
+      document.getElementById('taskName').value = item.name;
+      document.getElementById('taskDetail').value = item.detail || '';
+      document.getElementById('taskStatus').value = item.status;
+    }
+  } else {
+    document.getElementById('taskName').value = '';
+    document.getElementById('taskDetail').value = '';
+    document.getElementById('taskStatus').value = 'progress';
+  }
+  document.getElementById('taskModal').classList.add('active');
+}
+
+function saveTask() {
+  const name = document.getElementById('taskName').value.trim();
+  if (!name) { alert('נא להזין שם משימה'); return; }
+  const section = document.getElementById('taskSection').value;
+  const list = section === 'bureaucracy' ? appData.bureaucracy : appData.futureTasks;
+  const task = {
+    id: editingId || Date.now().toString(),
+    name,
+    detail: document.getElementById('taskDetail').value.trim(),
+    status: document.getElementById('taskStatus').value
+  };
+  if (editingId) {
+    const idx = list.findIndex(x => x.id === editingId);
+    if (idx >= 0) list[idx] = task;
+  } else {
+    list.push(task);
+  }
+  closeModal('taskModal');
+  renderAll();
+}
+
+function deleteTask(id, section) {
+  if (!confirm('למחוק את המשימה?')) return;
+  if (section === 'bureaucracy') appData.bureaucracy = appData.bureaucracy.filter(x => x.id !== id);
+  else appData.futureTasks = appData.futureTasks.filter(x => x.id !== id);
+  renderAll();
+}
+
+function renderBureaucracy() {
+  const active = appData.bureaucracy.filter(t => t.status !== 'done');
+  const done = appData.bureaucracy.filter(t => t.status === 'done');
+
+  const activeTable = document.getElementById('burActiveTable');
+  const activeEmpty = document.getElementById('burActiveEmpty');
+  const doneTable = document.getElementById('burDoneTable');
+  const doneEmpty = document.getElementById('burDoneEmpty');
+
+  if (active.length === 0) {
+    activeTable.style.display = 'none'; activeEmpty.style.display = 'block';
+  } else {
+    activeTable.style.display = ''; activeEmpty.style.display = 'none';
+    document.getElementById('burActiveBody').innerHTML = active.map(t => `
+      <tr>
+        <td><strong>${t.name}</strong></td>
+        <td style="color:var(--gray-500)">${t.detail || '-'}</td>
+        <td>${statusBadge(t.status)}</td>
+        <td>
+          <button class="btn btn-outline btn-sm" title="סמן כבוצע" onclick="markTaskDone('${t.id}','bureaucracy')">&#10003;</button>
+          <button class="btn btn-outline btn-sm" onclick="openTaskModal('${t.id}','bureaucracy')">&#9998;</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTask('${t.id}','bureaucracy')">&#128465;</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  if (done.length === 0) {
+    doneTable.style.display = 'none'; doneEmpty.style.display = 'block';
+  } else {
+    doneTable.style.display = ''; doneEmpty.style.display = 'none';
+    document.getElementById('burDoneBody').innerHTML = done.map(t => `
+      <tr style="opacity:0.75">
+        <td><strong style="text-decoration:line-through">${t.name}</strong></td>
+        <td style="color:var(--gray-400)">${t.detail || '-'}</td>
+        <td>${statusBadge(t.status)}</td>
+        <td>
+          <button class="btn btn-outline btn-sm" title="החזר לפעילות" onclick="markTaskUndone('${t.id}','bureaucracy')">&#8634;</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTask('${t.id}','bureaucracy')">&#128465;</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+}
+
+function renderFutureTasks() {
+  const active = appData.futureTasks.filter(t => t.status !== 'done');
+  const done = appData.futureTasks.filter(t => t.status === 'done');
+
+  const activeTable = document.getElementById('futureActiveTable');
+  const activeEmpty = document.getElementById('futureActiveEmpty');
+  const doneTable = document.getElementById('futureDoneTable');
+  const doneEmpty = document.getElementById('futureDoneEmpty');
+
+  if (active.length === 0) {
+    activeTable.style.display = 'none'; activeEmpty.style.display = 'block';
+  } else {
+    activeTable.style.display = ''; activeEmpty.style.display = 'none';
+    document.getElementById('futureActiveBody').innerHTML = active.map(t => `
+      <tr>
+        <td><strong>${t.name}</strong></td>
+        <td style="color:var(--gray-500)">${t.detail || '-'}</td>
+        <td>${statusBadge(t.status)}</td>
+        <td>
+          <button class="btn btn-outline btn-sm" title="סמן כבוצע" onclick="markTaskDone('${t.id}','future')">&#10003;</button>
+          <button class="btn btn-outline btn-sm" onclick="openTaskModal('${t.id}','future')">&#9998;</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTask('${t.id}','future')">&#128465;</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  if (done.length === 0) {
+    doneTable.style.display = 'none'; doneEmpty.style.display = 'block';
+  } else {
+    doneTable.style.display = ''; doneEmpty.style.display = 'none';
+    document.getElementById('futureDoneBody').innerHTML = done.map(t => `
+      <tr style="opacity:0.75">
+        <td><strong style="text-decoration:line-through">${t.name}</strong></td>
+        <td style="color:var(--gray-400)">${t.detail || '-'}</td>
+        <td>${statusBadge(t.status)}</td>
+        <td>
+          <button class="btn btn-outline btn-sm" title="החזר לפעילות" onclick="markTaskUndone('${t.id}','future')">&#8634;</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTask('${t.id}','future')">&#128465;</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+}
+
+function markTaskDone(id, section) {
+  const list = section === 'bureaucracy' ? appData.bureaucracy : appData.futureTasks;
+  const item = list.find(x => x.id === id);
+  if (item) { item.status = 'done'; renderAll(); }
+}
+
+function markTaskUndone(id, section) {
+  const list = section === 'bureaucracy' ? appData.bureaucracy : appData.futureTasks;
+  const item = list.find(x => x.id === id);
+  if (item) { item.status = 'progress'; renderAll(); }
+}
+
+// ===== SUPPLIERS =====
+function openSupplierModal(id) {
+  editingId = id || null;
+  document.getElementById('supplierModalTitle').textContent = id ? 'עריכת ספק' : 'הוספת ספק';
+  if (id) {
+    const s = appData.suppliers.find(x => x.id === id);
+    if (s) {
+      document.getElementById('supplierName').value = s.name;
+      document.getElementById('supplierContact').value = s.contact || '';
+      document.getElementById('supplierPhone').value = s.phone || '';
+      document.getElementById('supplierField').value = s.field || '';
+      document.getElementById('supplierDate').value = s.date || '';
+      document.getElementById('supplierQuote').value = s.quote || 'ממתינים';
+      document.getElementById('supplierStatus').value = s.status || 'progress';
+      document.getElementById('supplierNotes').value = s.notes || '';
+    }
+  } else {
+    ['supplierName','supplierContact','supplierPhone','supplierField','supplierDate','supplierNotes'].forEach(x => document.getElementById(x).value = '');
+    document.getElementById('supplierQuote').value = 'ממתינים';
+    document.getElementById('supplierStatus').value = 'progress';
+  }
+  document.getElementById('supplierModal').classList.add('active');
+}
+
+function saveSupplier() {
+  const name = document.getElementById('supplierName').value.trim();
+  if (!name) { alert('נא להזין שם ספק'); return; }
+  const supplier = {
+    id: editingId || Date.now().toString(),
+    name,
+    contact: document.getElementById('supplierContact').value.trim(),
+    phone: document.getElementById('supplierPhone').value.trim(),
+    field: document.getElementById('supplierField').value.trim(),
+    date: document.getElementById('supplierDate').value.trim(),
+    quote: document.getElementById('supplierQuote').value,
+    status: document.getElementById('supplierStatus').value,
+    notes: document.getElementById('supplierNotes').value.trim()
+  };
+  if (editingId) {
+    const idx = appData.suppliers.findIndex(x => x.id === editingId);
+    if (idx >= 0) appData.suppliers[idx] = supplier;
+  } else {
+    appData.suppliers.push(supplier);
+  }
+  closeModal('supplierModal');
+  renderAll();
+}
+
+function deleteSupplier(id) {
+  if (!confirm('למחוק את הספק?')) return;
+  appData.suppliers = appData.suppliers.filter(x => x.id !== id);
+  renderAll();
+}
+
+function renderSuppliers() {
+  const tbody = document.getElementById('suppliersBody');
+  const empty = document.getElementById('suppliersEmpty');
+  const container = document.getElementById('suppliersTableContainer');
+  if (appData.suppliers.length === 0) {
+    container.style.display = 'none'; empty.style.display = 'block'; return;
+  }
+  container.style.display = 'block'; empty.style.display = 'none';
+  tbody.innerHTML = appData.suppliers.map(s => `
+    <tr>
+      <td><strong>${s.name}</strong></td>
+      <td>${s.contact || '-'}${s.phone ? '<br><a href="tel:' + s.phone + '" style="color:var(--primary);font-size:0.82rem">' + s.phone + '</a>' : ''}</td>
+      <td>${s.field || '-'}</td>
+      <td>${s.date || '-'}</td>
+      <td><span class="badge ${s.quote === 'אושרה' ? 'badge-done' : s.quote === 'התקבלה' ? 'badge-progress' : s.quote === 'לא נדרש' ? 'badge-low' : 'badge-pending'}">${s.quote}</span></td>
+      <td>${statusBadge(s.status)}</td>
+      <td>
+        <button class="btn btn-outline btn-sm" onclick="openSupplierModal('${s.id}')">&#9998;</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteSupplier('${s.id}')">&#128465;</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ===== TEAM =====
+function openTeamModal(id) {
+  editingId = id || null;
+  document.getElementById('teamModalTitle').textContent = id ? 'עריכת חבר צוות' : 'הוספת חבר צוות';
+  if (id) {
+    const m = appData.team.find(x => x.id === id);
+    if (m) {
+      document.getElementById('teamName').value = m.name;
+      document.getElementById('teamRole').value = m.role || '';
+      document.getElementById('teamPhone').value = m.phone || '';
+      document.getElementById('teamEmail').value = m.email || '';
+      document.getElementById('teamNotes').value = m.notes || '';
+    }
+  } else {
+    ['teamName','teamRole','teamPhone','teamEmail','teamNotes'].forEach(x => document.getElementById(x).value = '');
+  }
+  document.getElementById('teamModal').classList.add('active');
+}
+
+function saveTeamMember() {
+  const name = document.getElementById('teamName').value.trim();
+  if (!name) { alert('נא להזין שם'); return; }
+  const member = {
+    id: editingId || Date.now().toString(),
+    name,
+    role: document.getElementById('teamRole').value.trim(),
+    phone: document.getElementById('teamPhone').value.trim(),
+    email: document.getElementById('teamEmail').value.trim(),
+    notes: document.getElementById('teamNotes').value.trim()
+  };
+  if (editingId) {
+    const idx = appData.team.findIndex(x => x.id === editingId);
+    if (idx >= 0) appData.team[idx] = member;
+  } else {
+    appData.team.push(member);
+  }
+  closeModal('teamModal');
+  renderAll();
+}
+
+function deleteTeamMember(id) {
+  if (!confirm('למחוק?')) return;
+  appData.team = appData.team.filter(x => x.id !== id);
+  renderAll();
+}
+
+function renderTeam() {
+  const tbody = document.getElementById('teamBody');
+  const empty = document.getElementById('teamEmpty');
+  const container = document.getElementById('teamTableContainer');
+  if (appData.team.length === 0) {
+    container.style.display = 'none'; empty.style.display = 'block'; return;
+  }
+  container.style.display = 'block'; empty.style.display = 'none';
+  tbody.innerHTML = appData.team.map(m => `
+    <tr>
+      <td><strong>${m.name}</strong></td>
+      <td>${m.role || '-'}</td>
+      <td>${m.phone ? '<a href="tel:' + m.phone + '">' + m.phone + '</a>' : '-'}</td>
+      <td>${m.email || '-'}</td>
+      <td style="font-size:0.83rem;color:var(--gray-500)">${m.notes || '-'}</td>
+      <td>
+        <button class="btn btn-outline btn-sm" onclick="openTeamModal('${m.id}')">&#9998;</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteTeamMember('${m.id}')">&#128465;</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ===== TIMELINE =====
+function renderTimeline() {
+  const container = document.getElementById('timelineContainer');
+  const empty = document.getElementById('timelineEmpty');
+  const items = [];
+
+  appData.bureaucracy.forEach(t => items.push({ title: t.name, detail: t.detail, status: t.status, section: 'בירוקרטיה' }));
+  appData.suppliers.forEach(s => {
+    items.push({ title: s.name + ' - ' + s.field, detail: s.contact + ' ' + s.phone, status: s.status, section: 'ספקים', dateText: s.date });
+  });
+  appData.futureTasks.forEach(t => items.push({ title: t.name, detail: t.detail, status: t.status, section: 'משימות' }));
+
+  container.querySelectorAll('.timeline-item').forEach(el => el.remove());
+  if (items.length === 0) { empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+
+  const html = items.map(item => {
+    const dotClass = item.status === 'done' ? 'done' : item.status === 'future' ? 'future' : 'pending';
+    return `
+      <div class="timeline-item">
+        <div class="timeline-date">${item.dateText || item.section}</div>
+        <div class="timeline-dot ${dotClass}"></div>
+        <div class="timeline-content">
+          <h4>${item.title}</h4>
+          <p>${item.detail || ''} &nbsp;${statusBadge(item.status)}</p>
+        </div>
+      </div>
+    `;
+  }).join('');
+  container.insertAdjacentHTML('afterbegin', html);
+}
+
+// ===== STATS =====
+function renderStats() {
+  const allTasks = [...appData.bureaucracy, ...appData.futureTasks];
+  const total = allTasks.length;
+  const done = allTasks.filter(t => t.status === 'done').length;
+  const progress = allTasks.filter(t => t.status === 'progress').length;
+  const future = allTasks.filter(t => t.status === 'future').length;
+
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statDone').textContent = done;
+  document.getElementById('statProgress').textContent = progress;
+  document.getElementById('statFuture').textContent = future;
+  document.getElementById('statSuppliers').textContent = appData.suppliers.length;
+
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  document.getElementById('progressPercent').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  // In-progress items
+  const urgentEl = document.getElementById('urgentItems');
+  const inProgress = allTasks.filter(t => t.status === 'progress');
+  if (inProgress.length === 0) {
+    urgentEl.innerHTML = '<div class="empty-state"><div class="icon">&#128077;</div><p>הכל מטופל!</p></div>';
+  } else {
+    urgentEl.innerHTML = inProgress.slice(0, 7).map(t => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--gray-100)">
+        <span style="font-size:0.87rem">${t.name}</span>
+        <span class="badge badge-progress">בתהליך</span>
+      </div>
+    `).join('');
+  }
+
+  // Upcoming supplier meetings
+  const meetingsEl = document.getElementById('upcomingMeetings');
+  const upcoming = appData.suppliers.filter(s => s.date && s.date !== 'לא נקבע' && s.status !== 'done');
+  if (upcoming.length === 0) {
+    meetingsEl.innerHTML = '<div class="empty-state"><div class="icon">&#128197;</div><p>אין פגישות קרובות</p></div>';
+  } else {
+    meetingsEl.innerHTML = upcoming.map(s => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--gray-100)">
+        <div>
+          <strong style="font-size:0.87rem">${s.name}</strong>
+          <br><span style="font-size:0.8rem;color:var(--gray-400)">${s.field} | ${s.contact} ${s.phone}</span>
+        </div>
+        <span style="font-size:0.83rem;color:var(--primary);font-weight:600;white-space:nowrap;margin-right:12px">${s.date}</span>
+      </div>
+    `).join('');
+  }
+}
+
+// ===== SETTINGS =====
+function saveSettings() {
+  appData.project.name = document.getElementById('settingName').value.trim();
+  appData.project.desc = document.getElementById('settingDesc').value.trim();
+  appData.project.start = document.getElementById('settingStart').value;
+  appData.project.end = document.getElementById('settingEnd').value;
+  alert('ההגדרות נשמרו!');
+}
+
+// ===== EXPORT / IMPORT =====
+function exportData() {
+  const json = JSON.stringify(appData, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'dashboard-beit-yerushalayim.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (data.bureaucracy || data.suppliers || data.futureTasks) {
+        appData = { ...appData, ...data };
+        renderAll();
+        alert('הנתונים יובאו בהצלחה!');
+      } else { alert('קובץ לא תקין'); }
+    } catch { alert('שגיאה בקריאת הקובץ'); }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ===== RENDER ALL =====
+function renderAll() {
+  renderBureaucracy();
+  renderSuppliers();
+  renderFutureTasks();
+  renderTeam();
+  renderTimeline();
+  renderStats();
+}
+
+renderAll();
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>דשבורד תוכנית עבודה - הקמת הבית בירושלים</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --primary-dark: #1d4ed8;
+    --success: #16a34a;
+    --success-light: #dcfce7;
+    --warning: #d97706;
+    --warning-light: #fef3c7;
+    --danger: #dc2626;
+    --danger-light: #fee2e2;
+    --info: #7c3aed;
+    --info-light: #ede9fe;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8eef8 100%);
+    color: var(--gray-800);
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+    color: white;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header h1 { font-size: 1.5rem; font-weight: 700; }
+  .header .subtitle { font-size: 0.88rem; opacity: 0.85; margin-top: 2px; }
+  .header-actions { display: flex; gap: 10px; }
+  .header-actions button {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .header-actions button:hover { background: rgba(255,255,255,0.25); }
+
+  .nav {
+    background: white;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    gap: 0;
+    padding: 0 32px;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+  }
+  .nav button {
+    background: none;
+    border: none;
+    padding: 14px 22px;
+    font-family: inherit;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: var(--gray-500);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav button:hover { color: var(--primary); }
+  .nav button.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  .stats-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 24px; }
+  .stat-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border-top: 3px solid var(--gray-200);
+  }
+  .stat-card .stat-number { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+  .stat-card .stat-label { font-size: 0.82rem; color: var(--gray-500); margin-top: 2px; }
+  .stat-card.success { border-top-color: var(--success); }
+  .stat-card.success .stat-number { color: var(--success); }
+  .stat-card.warning { border-top-color: var(--warning); }
+  .stat-card.warning .stat-number { color: var(--warning); }
+  .stat-card.danger { border-top-color: var(--danger); }
+  .stat-card.danger .stat-number { color: var(--danger); }
+  .stat-card.info { border-top-color: var(--info); }
+  .stat-card.info .stat-number { color: var(--info); }
+
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--gray-100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-header h2 { font-size: 1.05rem; font-weight: 600; }
+  .card-body { padding: 20px 24px; }
+
+  .btn {
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-primary { background: var(--primary); color: white; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-success { background: var(--success); color: white; }
+  .btn-danger { background: var(--danger); color: white; }
+  .btn-danger:hover { background: #b91c1c; }
+  .btn-outline { background: white; border: 1px solid var(--gray-300); color: var(--gray-700); }
+  .btn-outline:hover { background: var(--gray-50); }
+  .btn-sm { padding: 5px 12px; font-size: 0.8rem; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: right;
+    padding: 11px 14px;
+    background: var(--gray-50);
+    font-weight: 600;
+    font-size: 0.83rem;
+    color: var(--gray-600);
+    border-bottom: 2px solid var(--gray-200);
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--gray-100); font-size: 0.88rem; }
+  tr:hover { background: var(--gray-50); }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .badge-pending { background: var(--warning-light); color: var(--warning); }
+  .badge-progress { background: var(--primary-light); color: var(--primary); }
+  .badge-done { background: var(--success-light); color: var(--success); }
+  .badge-future { background: var(--info-light); color: var(--info); }
+  .badge-high { background: var(--danger-light); color: var(--danger); }
+  .badge-medium { background: var(--warning-light); color: var(--warning); }
+  .badge-low { background: var(--gray-100); color: var(--gray-500); }
+
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: all; }
+  .modal {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    width: 90%; max-width: 520px; max-height: 85vh;
+    overflow-y: auto;
+    transform: translateY(20px);
+    transition: transform 0.2s;
+  }
+  .modal-overlay.active .modal { transform: translateY(0); }
+  .modal-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--gray-100);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .modal-header h3 { font-size: 1.05rem; font-weight: 600; }
+  .modal-close { background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--gray-400); padding: 4px; }
+  .modal-body { padding: 20px 24px; }
+  .modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--gray-100);
+    display: flex; gap: 10px; justify-content: flex-start;
+  }
+
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--gray-700); margin-bottom: 5px; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 10px 14px;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-family: inherit; font-size: 0.9rem;
+    transition: border-color 0.2s;
+    direction: rtl;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+  .form-group textarea { resize: vertical; min-height: 70px; }
+
+  .project-info {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius);
+    padding: 22px;
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+  .project-info h3 { color: var(--primary-dark); margin-bottom: 10px; font-size: 1.05rem; }
+  .project-info p { color: var(--gray-600); font-size: 0.9rem; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .progress-bar { height: 8px; background: var(--gray-200); border-radius: 4px; overflow: hidden; margin-top: 8px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--success)); border-radius: 4px; transition: width 0.5s ease; }
+
+  .empty-state { text-align: center; padding: 36px 20px; color: var(--gray-400); }
+  .empty-state .icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+  .timeline-item {
+    display: flex; gap: 14px; padding: 14px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-date { min-width: 100px; font-size: 0.85rem; color: var(--gray-500); padding-top: 2px; }
+  .timeline-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--primary); margin-top: 5px; flex-shrink: 0; }
+  .timeline-dot.done { background: var(--success); }
+  .timeline-dot.pending { background: var(--warning); }
+  .timeline-dot.future { background: var(--info); }
+  .timeline-content h4 { font-size: 0.93rem; font-weight: 600; margin-bottom: 3px; }
+  .timeline-content p { font-size: 0.83rem; color: var(--gray-500); }
+
+  .filter-btn.active { background: var(--primary-light) !important; color: var(--primary) !important; border-color: var(--primary) !important; }
+
+  .team-note {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+  .team-note strong { color: var(--warning); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  @media (max-width: 768px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .header { padding: 16px 20px; flex-direction: column; gap: 12px; text-align: center; }
+    .container { padding: 16px; }
+    .nav { padding: 0 12px; }
+    .nav button { padding: 12px 14px; font-size: 0.85rem; }
+  }
+  @media print {
+    .header-actions, .btn, .nav { display: none !important; }
+    .section { display: block !important; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>&#127959; תוכנית עבודה - הקמת הבית בירושלים</h1>
+    <div class="subtitle">פרויקט שיקומי לפצועי ונכי צה"ל</div>
+  </div>
+  <div class="header-actions">
+    <button onclick="exportData()">&#128229; ייצוא נתונים</button>
+    <button onclick="document.getElementById('importFile').click()">&#128228; ייבוא נתונים</button>
+    <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+    <button onclick="window.print()">&#128424; הדפסה</button>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="active" onclick="showSection('overview', this)">&#127968; סקירה כללית</button>
+  <button onclick="showSection('bureaucracy', this)">&#128203; בירוקרטיה ותשלומים</button>
+  <button onclick="showSection('suppliers', this)">&#128188; ספקים</button>
+  <button onclick="showSection('tasks', this)">&#9989; משימות עתידיות</button>
+  <button onclick="showSection('team', this)">&#128101; בניית צוות</button>
+  <button onclick="showSection('timeline', this)">&#128197; לוח זמנים</button>
+  <button onclick="showSection('settings', this)">&#9881;&#65039; הגדרות</button>
+</div>
+
+<div class="container">
+
+  <!-- ===== OVERVIEW ===== -->
+  <div id="section-overview" class="section active">
+    <div class="project-info">
+      <h3>&#128204; אודות הפרויקט</h3>
+      <p>הקמת הבית בירושלים מהווה מהלך אסטרטגי מרכזי בפעילות העמותה, שמטרתו להרחיב ולהעמיק את המענה הניתן <strong>לפצועי ונכי צה"ל</strong>. הבית עתיד לשמש כמרחב שיקומי, תומך ומקדם, המשלב פעילות טיפולית, חברתית ותעסוקתית, במטרה לחזק את יכולותיהם האישיות של המשתתפים ולסייע בתהליך השתלבותם המיטבית בחברה.</p>
+      <p style="margin-top:10px">התוכנית שמה דגש על תיאום בין כלל הגורמים המעורבים, ניהול יעיל של המשאבים, ובקרה שוטפת לאורך תהליך ההקמה. המסמך מבוסס על גישה מקצועית, מערכתית וגמישה.</p>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-number" id="statTotal">0</div>
+        <div class="stat-label">סה"כ משימות</div>
+      </div>
+      <div class="stat-card success">
+        <div class="stat-number" id="statDone">0</div>
+        <div class="stat-label">הושלמו</div>
+      </div>
+      <div class="stat-card warning">
+        <div class="stat-number" id="statProgress">0</div>
+        <div class="stat-label">בתהליך</div>
+      </div>
+      <div class="stat-card info">
+        <div class="stat-number" id="statFuture">0</div>
+        <div class="stat-label">עתידיות</div>
+      </div>
+      <div class="stat-card danger">
+        <div class="stat-number" id="statSuppliers">0</div>
+        <div class="stat-label">ספקים</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h2>&#128202; התקדמות כללית</h2></div>
+      <div class="card-body">
+        <div style="display:flex;justify-content:space-between;font-size:0.9rem;color:var(--gray-600)">
+          <span>התקדמות הפרויקט</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header"><h2>&#128293; דורש טיפול</h2></div>
+        <div class="card-body" id="urgentItems"></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h2>&#128197; פגישות קרובות עם ספקים</h2></div>
+        <div class="card-body" id="upcomingMeetings"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BUREAUCRACY ===== -->
+  <div id="section-bureaucracy" class="section">
+    <p style="color:var(--gray-500);font-size:0.88rem;margin-bottom:16px;text-align:center">כלל ההיבטים המנהליים והפיננסיים הנדרשים לצורך הקמת הבית והפעלתו התקינה.</p>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header">
+          <h2>&#128203; משימות פעילות</h2>
+          <button class="btn btn-primary" onclick="openTaskModal(null,'bureaucracy')">+ הוסף משימה</button>
+        </div>
+        <div class="card-body">
+          <div id="burActiveEmpty" class="empty-state" style="display:none"><div class="icon">&#127942;</div><p>הכל בוצע!</p></div>
+          <table id="burActiveTable">
+            <thead><tr><th>משימה</th><th>פירוט</th><th>סטטוס</th><th>פעולות</th></tr></thead>
+            <tbody id="burActiveBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2>&#9989; משימות שבוצעו</h2>
+        </div>
+        <div class="card-body">
+          <div id="burDoneEmpty" class="empty-state"><div class="icon">&#128203;</div><p>עדיין אין משימות שהושלמו</p></div>
+          <table id="burDoneTable" style="display:none">
+            <thead><tr><th>משימה</th><th>פירוט</th><th>הושלמה</th><th>פעולות</th></tr></thead>
+            <tbody id="burDoneBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SUPPLIERS ===== -->
+  <div id="section-suppliers" class="section">
+    <div class="card">
+      <div class="card-header">
+        <h2>&#128188; ספקים ואנשי מקצוע</h2>
+        <button class="btn btn-primary" onclick="openSupplierModal()">+ הוסף ספק</button>
+      </div>
+      <div class="card-body">
+        <div id="suppliersTableContainer">
+          <table>
+            <thead>
+              <tr><th>ספק</th><th>איש קשר</th><th>תחום</th><th>מועד הגעה</th><th>הצעת מחיר</th><th>סטטוס</th><th>פעולות</th></tr>
+            </thead>
+            <tbody id="suppliersBody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="suppliersEmpty" style="display:none">
+          <div class="icon">&#128119;</div><p>אין ספקים רשומים</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FUTURE TASKS ===== -->
+  <div id="section-tasks" class="section">
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header">
+          <h2>&#9989; משימות פעילות</h2>
+          <button class="btn btn-primary" onclick="openTaskModal(null,'future')">+ הוסף משימה</button>
+        </div>
+        <div class="card-body">
+          <div id="futureActiveEmpty" class="empty-state" style="display:none"><div class="icon">&#127942;</div><p>אין משימות פעילות — הכל בוצע!</p></div>
+          <table id="futureActiveTable">
+            <thead><tr><th>משימה</th><th>פירוט</th><th>סטטוס</th><th>פעולות</th></tr></thead>
+            <tbody id="futureActiveBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2>&#9989; משימות שבוצעו</h2>
+        </div>
+        <div class="card-body">
+          <div id="futureDoneEmpty" class="empty-state"><div class="icon">&#128203;</div><p>עדיין אין משימות שהושלמו</p></div>
+          <table id="futureDoneTable" style="display:none">
+            <thead><tr><th>משימה</th><th>פירוט</th><th>הושלמה</th><th>פעולות</th></tr></thead>
+            <tbody id="futureDoneBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TEAM ===== -->
+  <div id="section-team" class="section">
+    <div class="team-note">
+      <strong>&#128101; בניית צוות</strong><br><br>
+      הקמת צוות מקצועי ומסור היא מרכיב מרכזי בהצלחת פעילות הבית. תחום זה כולל איתור, גיוס והכשרה של אנשי צוות בתחומים רלוונטיים כגון שיקום, תפעול, לוגיסטיקה וניהול.<br><br>
+      יש להגדיר תפקידים ותחומי אחריות בצורה ברורה ולוודא חיבור לערכי העמותה ולחזון הפרויקט.
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>&#128100; חברי צוות</h2>
+        <button class="btn btn-primary" onclick="openTeamModal()">+ הוסף חבר צוות</button>
+      </div>
+      <div class="card-body">
+        <div id="teamTableContainer" style="display:none">
+          <table>
+            <thead><tr><th>שם</th><th>תפקיד</th><th>טלפון</th><th>אימייל</th><th>הערות</th><th>פעולות</th></tr></thead>
+            <tbody id="teamBody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="teamEmpty">
+          <div class="icon">&#128101;</div><p>טרם הוזנו חברי צוות. לחץ "הוסף חבר צוות" להתחיל</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TIMELINE ===== -->
+  <div id="section-timeline" class="section">
+    <div class="card">
+      <div class="card-header"><h2>&#128197; לוח זמנים - ציר כרונולוגי</h2></div>
+      <div class="card-body" id="timelineContainer">
+        <div class="empty-state" id="timelineEmpty" style="display:none">
+          <div class="icon">&#128338;</div><p>אין אירועים בלוח הזמנים</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SETTINGS ===== -->
+  <div id="section-settings" class="section">
+    <div class="card">
+      <div class="card-header"><h2>&#9881;&#65039; הגדרות פרויקט</h2></div>
+      <div class="card-body">
+        <div class="form-group">
+          <label>שם הפרויקט</label>
+          <input type="text" id="settingName" value="הקמת הבית בירושלים">
+        </div>
+        <div class="form-group">
+          <label>תיאור</label>
+          <textarea id="settingDesc" rows="4">הקמת הבית בירושלים מהווה מהלך אסטרטגי מרכזי בפעילות העמותה, שמטרתו להרחיב ולהעמיק את המענה הניתן לפצועי ונכי צה"ל.</textarea>
+        </div>
+        <div class="form-group">
+          <label>תאריך התחלה</label>
+          <input type="date" id="settingStart">
+        </div>
+        <div class="form-group">
+          <label>תאריך סיום משוער</label>
+          <input type="date" id="settingEnd">
+        </div>
+        <button class="btn btn-primary" onclick="saveSettings()">&#128190; שמור הגדרות</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Task Modal -->
+<div class="modal-overlay" id="taskModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="taskModalTitle">הוספת משימה</h3>
+      <button class="modal-close" onclick="closeModal('taskModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>שם המשימה *</label>
+        <input type="text" id="taskName">
+      </div>
+      <div class="form-group">
+        <label>פירוט</label>
+        <textarea id="taskDetail"></textarea>
+      </div>
+      <div class="form-group">
+        <label>סטטוס</label>
+        <select id="taskStatus">
+          <option value="progress">בתהליך</option>
+          <option value="done">הושלם</option>
+          <option value="future">עתידי</option>
+          <option value="pending">ממתין</option>
+        </select>
+      </div>
+      <input type="hidden" id="taskSection" value="bureaucracy">
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="saveTask()">&#128190; שמור</button>
+      <button class="btn btn-outline" onclick="closeModal('taskModal')">ביטול</button>
+    </div>
+  </div>
+</div>
+
+<!-- Supplier Modal -->
+<div class="modal-overlay" id="supplierModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="supplierModalTitle">הוספת ספק</h3>
+      <button class="modal-close" onclick="closeModal('supplierModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>שם ספק / חברה *</label>
+        <input type="text" id="supplierName">
+      </div>
+      <div class="form-group">
+        <label>איש קשר</label>
+        <input type="text" id="supplierContact">
+      </div>
+      <div class="form-group">
+        <label>טלפון</label>
+        <input type="tel" id="supplierPhone">
+      </div>
+      <div class="form-group">
+        <label>תחום פעילות</label>
+        <input type="text" id="supplierField">
+      </div>
+      <div class="form-group">
+        <label>מועד הגעה</label>
+        <input type="text" id="supplierDate" placeholder="תאריך ושעה">
+      </div>
+      <div class="form-group">
+        <label>הצעת מחיר</label>
+        <select id="supplierQuote">
+          <option value="ממתינים">ממתינים</option>
+          <option value="התקבלה">התקבלה</option>
+          <option value="אושרה">אושרה</option>
+          <option value="לא נדרש">לא נדרש</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>סטטוס</label>
+        <select id="supplierStatus">
+          <option value="progress">בתהליך</option>
+          <option value="done">הושלם</option>
+          <option value="future">עתידי</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>הערות</label>
+        <textarea id="supplierNotes"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="saveSupplier()">&#128190; שמור</button>
+      <button class="btn btn-outline" onclick="closeModal('supplierModal')">ביטול</button>
+    </div>
+  </div>
+</div>
+
+<!-- Team Modal -->
+<div class="modal-overlay" id="teamModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="teamModalTitle">הוספת חבר צוות</h3>
+      <button class="modal-close" onclick="closeModal('teamModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>שם *</label>
+        <input type="text" id="teamName">
+      </div>
+      <div class="form-group">
+        <label>תפקיד</label>
+        <input type="text" id="teamRole">
+      </div>
+      <div class="form-group">
+        <label>טלפון</label>
+        <input type="tel" id="teamPhone">
+      </div>
+      <div class="form-group">
+        <label>אימייל</label>
+        <input type="email" id="teamEmail">
+      </div>
+      <div class="form-group">
+        <label>הערות</label>
+        <textarea id="teamNotes"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="saveTeamMember()">&#128190; שמור</button>
+      <button class="btn btn-outline" onclick="closeModal('teamModal')">ביטול</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== DATA WITH PRE-POPULATED INFO =====
+let appData = {
+  project: {
+    name: 'הקמת הבית בירושלים',
+    desc: 'הקמת הבית בירושלים מהווה מהלך אסטרטגי מרכזי בפעילות העמותה, שמטרתו להרחיב ולהעמיק את המענה הניתן לפצועי ונכי צה"ל.',
+    start: '', end: ''
+  },
+  bureaucracy: [
+    { id: 'b1', name: 'העברת חשבון חשמל', detail: 'שינוי משלמים והגדרת אמצעי תשלום', status: 'progress' },
+    { id: 'b2', name: 'העברת חשבון מים', detail: 'שינוי משלמים והגדרת אמצעי תשלום', status: 'progress' },
+    { id: 'b3', name: 'העברת חשבון מעלית', detail: 'שינוי משלמים והסדרת תחזוקה שוטפת', status: 'progress' },
+    { id: 'b4', name: 'העברת חשבון גז', detail: 'שינוי משלמים והגדרת ספק פעיל', status: 'progress' },
+    { id: 'b5', name: 'ביטוח מבנה', detail: 'הסדרת פוליסה על שם העמותה', status: 'progress' },
+    { id: 'b6', name: 'קו חירום למעלית (בזק)', detail: 'פתיחת/העברת קו חירום ועדכון משלמים', status: 'progress' },
+    { id: 'b7', name: 'ארנונה', detail: 'העברה על שם העמותה', status: 'done' }
+  ],
+  suppliers: [
+    { id: 's1', name: 'דור (תקשורת)', contact: 'דור', phone: '0504441595', field: 'אינטרנט ותקשורת', date: '12.4.26', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's2', name: 'דורון פרגולות', contact: 'דורון', phone: '0546483942', field: 'פרגולה למרפסת', date: '12.4.26 10:00-11:00', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's3', name: 'אלעד אופיר', contact: 'אלעד', phone: '0536240422', field: 'שיפוצים וגבס', date: '12.4.26 12:00', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's4', name: 'נתנאל חשמל', contact: 'נתנאל', phone: '0536805065', field: 'בדיקת לוחות חשמל', date: '12.4.26 11:00', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's5', name: 'רמי אנרג\'ים', contact: 'רמי', phone: '0525707062', field: 'חדר כושר', date: 'מידות נשלחות', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's6', name: 'סיגל ניקיון', contact: 'סיגל', phone: '0509883988', field: 'ניקיון', date: 'לא נקבע', quote: 'לא נדרש', status: 'future', notes: '' }
+  ],
+  futureTasks: [
+    { id: 'f1', name: 'הפעלת הבריכה', detail: 'הסדרת תפעול ואישורים', status: 'progress' },
+    { id: 'f2', name: 'הזמנת מטפים', detail: 'דרישות ביטוח', status: 'done' },
+    { id: 'f3', name: 'הקמת סאונות', detail: 'תכנון והצעות מחיר', status: 'progress' },
+    { id: 'f4', name: 'קבלת הצעות מחיר נוספות', detail: 'השוואת ספקים', status: 'progress' }
+  ],
+  team: []
+};
+
+let editingId = null;
+let editingSection = '';
+
+// ===== NAV =====
+function showSection(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('section-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ===== MODALS =====
+function closeModal(id) { document.getElementById(id).classList.remove('active'); editingId = null; }
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) { o.classList.remove('active'); editingId = null; } });
+});
+
+function statusBadge(s) {
+  const map = {
+    progress: '<span class="badge badge-progress">בתהליך</span>',
+    done: '<span class="badge badge-done">הושלם</span>',
+    future: '<span class="badge badge-future">עתידי</span>',
+    pending: '<span class="badge badge-pending">ממתין</span>'
+  };
+  return map[s] || s;
+}
+
+// ===== TASKS =====
+function openTaskModal(id, section) {
+  editingSection = section || 'bureaucracy';
+  document.getElementById('taskSection').value = editingSection;
+  editingId = id || null;
+  document.getElementById('taskModalTitle').textContent = id ? 'עריכת משימה' : 'הוספת משימה';
+  if (id) {
+    const list = editingSection === 'bureaucracy' ? appData.bureaucracy : appData.futureTasks;
+    const item = list.find(x => x.id === id);
+    if (item) {
+      document.getElementById('taskName').value = item.name;
+      document.getElementById('taskDetail').value = item.detail || '';
+      document.getElementById('taskStatus').value = item.status;
+    }
+  } else {
+    document.getElementById('taskName').value = '';
+    document.getElementById('taskDetail').value = '';
+    document.getElementById('taskStatus').value = 'progress';
+  }
+  document.getElementById('taskModal').classList.add('active');
+}
+
+function saveTask() {
+  const name = document.getElementById('taskName').value.trim();
+  if (!name) { alert('נא להזין שם משימה'); return; }
+  const section = document.getElementById('taskSection').value;
+  const list = section === 'bureaucracy' ? appData.bureaucracy : appData.futureTasks;
+  const task = {
+    id: editingId || Date.now().toString(),
+    name,
+    detail: document.getElementById('taskDetail').value.trim(),
+    status: document.getElementById('taskStatus').value
+  };
+  if (editingId) {
+    const idx = list.findIndex(x => x.id === editingId);
+    if (idx >= 0) list[idx] = task;
+  } else {
+    list.push(task);
+  }
+  closeModal('taskModal');
+  renderAll();
+}
+
+function deleteTask(id, section) {
+  if (!confirm('למחוק את המשימה?')) return;
+  if (section === 'bureaucracy') appData.bureaucracy = appData.bureaucracy.filter(x => x.id !== id);
+  else appData.futureTasks = appData.futureTasks.filter(x => x.id !== id);
+  renderAll();
+}
+
+function renderBureaucracy() {
+  const active = appData.bureaucracy.filter(t => t.status !== 'done');
+  const done = appData.bureaucracy.filter(t => t.status === 'done');
+
+  const activeTable = document.getElementById('burActiveTable');
+  const activeEmpty = document.getElementById('burActiveEmpty');
+  const doneTable = document.getElementById('burDoneTable');
+  const doneEmpty = document.getElementById('burDoneEmpty');
+
+  if (active.length === 0) {
+    activeTable.style.display = 'none'; activeEmpty.style.display = 'block';
+  } else {
+    activeTable.style.display = ''; activeEmpty.style.display = 'none';
+    document.getElementById('burActiveBody').innerHTML = active.map(t => `
+      <tr>
+        <td><strong>${t.name}</strong></td>
+        <td style="color:var(--gray-500)">${t.detail || '-'}</td>
+        <td>${statusBadge(t.status)}</td>
+        <td>
+          <button class="btn btn-outline btn-sm" title="סמן כבוצע" onclick="markTaskDone('${t.id}','bureaucracy')">&#10003;</button>
+          <button class="btn btn-outline btn-sm" onclick="openTaskModal('${t.id}','bureaucracy')">&#9998;</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTask('${t.id}','bureaucracy')">&#128465;</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  if (done.length === 0) {
+    doneTable.style.display = 'none'; doneEmpty.style.display = 'block';
+  } else {
+    doneTable.style.display = ''; doneEmpty.style.display = 'none';
+    document.getElementById('burDoneBody').innerHTML = done.map(t => `
+      <tr style="opacity:0.75">
+        <td><strong style="text-decoration:line-through">${t.name}</strong></td>
+        <td style="color:var(--gray-400)">${t.detail || '-'}</td>
+        <td>${statusBadge(t.status)}</td>
+        <td>
+          <button class="btn btn-outline btn-sm" title="החזר לפעילות" onclick="markTaskUndone('${t.id}','bureaucracy')">&#8634;</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTask('${t.id}','bureaucracy')">&#128465;</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+}
+
+function renderFutureTasks() {
+  const active = appData.futureTasks.filter(t => t.status !== 'done');
+  const done = appData.futureTasks.filter(t => t.status === 'done');
+
+  const activeTable = document.getElementById('futureActiveTable');
+  const activeEmpty = document.getElementById('futureActiveEmpty');
+  const doneTable = document.getElementById('futureDoneTable');
+  const doneEmpty = document.getElementById('futureDoneEmpty');
+
+  if (active.length === 0) {
+    activeTable.style.display = 'none'; activeEmpty.style.display = 'block';
+  } else {
+    activeTable.style.display = ''; activeEmpty.style.display = 'none';
+    document.getElementById('futureActiveBody').innerHTML = active.map(t => `
+      <tr>
+        <td><strong>${t.name}</strong></td>
+        <td style="color:var(--gray-500)">${t.detail || '-'}</td>
+        <td>${statusBadge(t.status)}</td>
+        <td>
+          <button class="btn btn-outline btn-sm" title="סמן כבוצע" onclick="markTaskDone('${t.id}','future')">&#10003;</button>
+          <button class="btn btn-outline btn-sm" onclick="openTaskModal('${t.id}','future')">&#9998;</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTask('${t.id}','future')">&#128465;</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  if (done.length === 0) {
+    doneTable.style.display = 'none'; doneEmpty.style.display = 'block';
+  } else {
+    doneTable.style.display = ''; doneEmpty.style.display = 'none';
+    document.getElementById('futureDoneBody').innerHTML = done.map(t => `
+      <tr style="opacity:0.75">
+        <td><strong style="text-decoration:line-through">${t.name}</strong></td>
+        <td style="color:var(--gray-400)">${t.detail || '-'}</td>
+        <td>${statusBadge(t.status)}</td>
+        <td>
+          <button class="btn btn-outline btn-sm" title="החזר לפעילות" onclick="markTaskUndone('${t.id}','future')">&#8634;</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTask('${t.id}','future')">&#128465;</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+}
+
+function markTaskDone(id, section) {
+  const list = section === 'bureaucracy' ? appData.bureaucracy : appData.futureTasks;
+  const item = list.find(x => x.id === id);
+  if (item) { item.status = 'done'; renderAll(); }
+}
+
+function markTaskUndone(id, section) {
+  const list = section === 'bureaucracy' ? appData.bureaucracy : appData.futureTasks;
+  const item = list.find(x => x.id === id);
+  if (item) { item.status = 'progress'; renderAll(); }
+}
+
+// ===== SUPPLIERS =====
+function openSupplierModal(id) {
+  editingId = id || null;
+  document.getElementById('supplierModalTitle').textContent = id ? 'עריכת ספק' : 'הוספת ספק';
+  if (id) {
+    const s = appData.suppliers.find(x => x.id === id);
+    if (s) {
+      document.getElementById('supplierName').value = s.name;
+      document.getElementById('supplierContact').value = s.contact || '';
+      document.getElementById('supplierPhone').value = s.phone || '';
+      document.getElementById('supplierField').value = s.field || '';
+      document.getElementById('supplierDate').value = s.date || '';
+      document.getElementById('supplierQuote').value = s.quote || 'ממתינים';
+      document.getElementById('supplierStatus').value = s.status || 'progress';
+      document.getElementById('supplierNotes').value = s.notes || '';
+    }
+  } else {
+    ['supplierName','supplierContact','supplierPhone','supplierField','supplierDate','supplierNotes'].forEach(x => document.getElementById(x).value = '');
+    document.getElementById('supplierQuote').value = 'ממתינים';
+    document.getElementById('supplierStatus').value = 'progress';
+  }
+  document.getElementById('supplierModal').classList.add('active');
+}
+
+function saveSupplier() {
+  const name = document.getElementById('supplierName').value.trim();
+  if (!name) { alert('נא להזין שם ספק'); return; }
+  const supplier = {
+    id: editingId || Date.now().toString(),
+    name,
+    contact: document.getElementById('supplierContact').value.trim(),
+    phone: document.getElementById('supplierPhone').value.trim(),
+    field: document.getElementById('supplierField').value.trim(),
+    date: document.getElementById('supplierDate').value.trim(),
+    quote: document.getElementById('supplierQuote').value,
+    status: document.getElementById('supplierStatus').value,
+    notes: document.getElementById('supplierNotes').value.trim()
+  };
+  if (editingId) {
+    const idx = appData.suppliers.findIndex(x => x.id === editingId);
+    if (idx >= 0) appData.suppliers[idx] = supplier;
+  } else {
+    appData.suppliers.push(supplier);
+  }
+  closeModal('supplierModal');
+  renderAll();
+}
+
+function deleteSupplier(id) {
+  if (!confirm('למחוק את הספק?')) return;
+  appData.suppliers = appData.suppliers.filter(x => x.id !== id);
+  renderAll();
+}
+
+function renderSuppliers() {
+  const tbody = document.getElementById('suppliersBody');
+  const empty = document.getElementById('suppliersEmpty');
+  const container = document.getElementById('suppliersTableContainer');
+  if (appData.suppliers.length === 0) {
+    container.style.display = 'none'; empty.style.display = 'block'; return;
+  }
+  container.style.display = 'block'; empty.style.display = 'none';
+  tbody.innerHTML = appData.suppliers.map(s => `
+    <tr>
+      <td><strong>${s.name}</strong></td>
+      <td>${s.contact || '-'}${s.phone ? '<br><a href="tel:' + s.phone + '" style="color:var(--primary);font-size:0.82rem">' + s.phone + '</a>' : ''}</td>
+      <td>${s.field || '-'}</td>
+      <td>${s.date || '-'}</td>
+      <td><span class="badge ${s.quote === 'אושרה' ? 'badge-done' : s.quote === 'התקבלה' ? 'badge-progress' : s.quote === 'לא נדרש' ? 'badge-low' : 'badge-pending'}">${s.quote}</span></td>
+      <td>${statusBadge(s.status)}</td>
+      <td>
+        <button class="btn btn-outline btn-sm" onclick="openSupplierModal('${s.id}')">&#9998;</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteSupplier('${s.id}')">&#128465;</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ===== TEAM =====
+function openTeamModal(id) {
+  editingId = id || null;
+  document.getElementById('teamModalTitle').textContent = id ? 'עריכת חבר צוות' : 'הוספת חבר צוות';
+  if (id) {
+    const m = appData.team.find(x => x.id === id);
+    if (m) {
+      document.getElementById('teamName').value = m.name;
+      document.getElementById('teamRole').value = m.role || '';
+      document.getElementById('teamPhone').value = m.phone || '';
+      document.getElementById('teamEmail').value = m.email || '';
+      document.getElementById('teamNotes').value = m.notes || '';
+    }
+  } else {
+    ['teamName','teamRole','teamPhone','teamEmail','teamNotes'].forEach(x => document.getElementById(x).value = '');
+  }
+  document.getElementById('teamModal').classList.add('active');
+}
+
+function saveTeamMember() {
+  const name = document.getElementById('teamName').value.trim();
+  if (!name) { alert('נא להזין שם'); return; }
+  const member = {
+    id: editingId || Date.now().toString(),
+    name,
+    role: document.getElementById('teamRole').value.trim(),
+    phone: document.getElementById('teamPhone').value.trim(),
+    email: document.getElementById('teamEmail').value.trim(),
+    notes: document.getElementById('teamNotes').value.trim()
+  };
+  if (editingId) {
+    const idx = appData.team.findIndex(x => x.id === editingId);
+    if (idx >= 0) appData.team[idx] = member;
+  } else {
+    appData.team.push(member);
+  }
+  closeModal('teamModal');
+  renderAll();
+}
+
+function deleteTeamMember(id) {
+  if (!confirm('למחוק?')) return;
+  appData.team = appData.team.filter(x => x.id !== id);
+  renderAll();
+}
+
+function renderTeam() {
+  const tbody = document.getElementById('teamBody');
+  const empty = document.getElementById('teamEmpty');
+  const container = document.getElementById('teamTableContainer');
+  if (appData.team.length === 0) {
+    container.style.display = 'none'; empty.style.display = 'block'; return;
+  }
+  container.style.display = 'block'; empty.style.display = 'none';
+  tbody.innerHTML = appData.team.map(m => `
+    <tr>
+      <td><strong>${m.name}</strong></td>
+      <td>${m.role || '-'}</td>
+      <td>${m.phone ? '<a href="tel:' + m.phone + '">' + m.phone + '</a>' : '-'}</td>
+      <td>${m.email || '-'}</td>
+      <td style="font-size:0.83rem;color:var(--gray-500)">${m.notes || '-'}</td>
+      <td>
+        <button class="btn btn-outline btn-sm" onclick="openTeamModal('${m.id}')">&#9998;</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteTeamMember('${m.id}')">&#128465;</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ===== TIMELINE =====
+function renderTimeline() {
+  const container = document.getElementById('timelineContainer');
+  const empty = document.getElementById('timelineEmpty');
+  const items = [];
+
+  appData.bureaucracy.forEach(t => items.push({ title: t.name, detail: t.detail, status: t.status, section: 'בירוקרטיה' }));
+  appData.suppliers.forEach(s => {
+    items.push({ title: s.name + ' - ' + s.field, detail: s.contact + ' ' + s.phone, status: s.status, section: 'ספקים', dateText: s.date });
+  });
+  appData.futureTasks.forEach(t => items.push({ title: t.name, detail: t.detail, status: t.status, section: 'משימות' }));
+
+  container.querySelectorAll('.timeline-item').forEach(el => el.remove());
+  if (items.length === 0) { empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+
+  const html = items.map(item => {
+    const dotClass = item.status === 'done' ? 'done' : item.status === 'future' ? 'future' : 'pending';
+    return `
+      <div class="timeline-item">
+        <div class="timeline-date">${item.dateText || item.section}</div>
+        <div class="timeline-dot ${dotClass}"></div>
+        <div class="timeline-content">
+          <h4>${item.title}</h4>
+          <p>${item.detail || ''} &nbsp;${statusBadge(item.status)}</p>
+        </div>
+      </div>
+    `;
+  }).join('');
+  container.insertAdjacentHTML('afterbegin', html);
+}
+
+// ===== STATS =====
+function renderStats() {
+  const allTasks = [...appData.bureaucracy, ...appData.futureTasks];
+  const total = allTasks.length;
+  const done = allTasks.filter(t => t.status === 'done').length;
+  const progress = allTasks.filter(t => t.status === 'progress').length;
+  const future = allTasks.filter(t => t.status === 'future').length;
+
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statDone').textContent = done;
+  document.getElementById('statProgress').textContent = progress;
+  document.getElementById('statFuture').textContent = future;
+  document.getElementById('statSuppliers').textContent = appData.suppliers.length;
+
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  document.getElementById('progressPercent').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  // In-progress items
+  const urgentEl = document.getElementById('urgentItems');
+  const inProgress = allTasks.filter(t => t.status === 'progress');
+  if (inProgress.length === 0) {
+    urgentEl.innerHTML = '<div class="empty-state"><div class="icon">&#128077;</div><p>הכל מטופל!</p></div>';
+  } else {
+    urgentEl.innerHTML = inProgress.slice(0, 7).map(t => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--gray-100)">
+        <span style="font-size:0.87rem">${t.name}</span>
+        <span class="badge badge-progress">בתהליך</span>
+      </div>
+    `).join('');
+  }
+
+  // Upcoming supplier meetings
+  const meetingsEl = document.getElementById('upcomingMeetings');
+  const upcoming = appData.suppliers.filter(s => s.date && s.date !== 'לא נקבע' && s.status !== 'done');
+  if (upcoming.length === 0) {
+    meetingsEl.innerHTML = '<div class="empty-state"><div class="icon">&#128197;</div><p>אין פגישות קרובות</p></div>';
+  } else {
+    meetingsEl.innerHTML = upcoming.map(s => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--gray-100)">
+        <div>
+          <strong style="font-size:0.87rem">${s.name}</strong>
+          <br><span style="font-size:0.8rem;color:var(--gray-400)">${s.field} | ${s.contact} ${s.phone}</span>
+        </div>
+        <span style="font-size:0.83rem;color:var(--primary);font-weight:600;white-space:nowrap;margin-right:12px">${s.date}</span>
+      </div>
+    `).join('');
+  }
+}
+
+// ===== SETTINGS =====
+function saveSettings() {
+  appData.project.name = document.getElementById('settingName').value.trim();
+  appData.project.desc = document.getElementById('settingDesc').value.trim();
+  appData.project.start = document.getElementById('settingStart').value;
+  appData.project.end = document.getElementById('settingEnd').value;
+  alert('ההגדרות נשמרו!');
+}
+
+// ===== EXPORT / IMPORT =====
+function exportData() {
+  const json = JSON.stringify(appData, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'dashboard-beit-yerushalayim.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (data.bureaucracy || data.suppliers || data.futureTasks) {
+        appData = { ...appData, ...data };
+        renderAll();
+        alert('הנתונים יובאו בהצלחה!');
+      } else { alert('קובץ לא תקין'); }
+    } catch { alert('שגיאה בקריאת הקובץ'); }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ===== RENDER ALL =====
+function renderAll() {
+  renderBureaucracy();
+  renderSuppliers();
+  renderFutureTasks();
+  renderTeam();
+  renderTimeline();
+  renderStats();
+}
+
+renderAll();
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>דשבורד תוכנית עבודה - הקמת הבית בירושלים</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --primary-dark: #1d4ed8;
+    --success: #16a34a;
+    --success-light: #dcfce7;
+    --warning: #d97706;
+    --warning-light: #fef3c7;
+    --danger: #dc2626;
+    --danger-light: #fee2e2;
+    --info: #7c3aed;
+    --info-light: #ede9fe;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8eef8 100%);
+    color: var(--gray-800);
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+    color: white;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header h1 { font-size: 1.5rem; font-weight: 700; }
+  .header .subtitle { font-size: 0.88rem; opacity: 0.85; margin-top: 2px; }
+  .header-actions { display: flex; gap: 10px; }
+  .header-actions button {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .header-actions button:hover { background: rgba(255,255,255,0.25); }
+
+  .nav {
+    background: white;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    gap: 0;
+    padding: 0 32px;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+  }
+  .nav button {
+    background: none;
+    border: none;
+    padding: 14px 22px;
+    font-family: inherit;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: var(--gray-500);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav button:hover { color: var(--primary); }
+  .nav button.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  .stats-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 24px; }
+  .stat-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border-top: 3px solid var(--gray-200);
+  }
+  .stat-card .stat-number { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+  .stat-card .stat-label { font-size: 0.82rem; color: var(--gray-500); margin-top: 2px; }
+  .stat-card.success { border-top-color: var(--success); }
+  .stat-card.success .stat-number { color: var(--success); }
+  .stat-card.warning { border-top-color: var(--warning); }
+  .stat-card.warning .stat-number { color: var(--warning); }
+  .stat-card.danger { border-top-color: var(--danger); }
+  .stat-card.danger .stat-number { color: var(--danger); }
+  .stat-card.info { border-top-color: var(--info); }
+  .stat-card.info .stat-number { color: var(--info); }
+
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--gray-100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-header h2 { font-size: 1.05rem; font-weight: 600; }
+  .card-body { padding: 20px 24px; }
+
+  .btn {
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-primary { background: var(--primary); color: white; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-success { background: var(--success); color: white; }
+  .btn-danger { background: var(--danger); color: white; }
+  .btn-danger:hover { background: #b91c1c; }
+  .btn-outline { background: white; border: 1px solid var(--gray-300); color: var(--gray-700); }
+  .btn-outline:hover { background: var(--gray-50); }
+  .btn-sm { padding: 5px 12px; font-size: 0.8rem; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: right;
+    padding: 11px 14px;
+    background: var(--gray-50);
+    font-weight: 600;
+    font-size: 0.83rem;
+    color: var(--gray-600);
+    border-bottom: 2px solid var(--gray-200);
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--gray-100); font-size: 0.88rem; }
+  tr:hover { background: var(--gray-50); }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .badge-pending { background: var(--warning-light); color: var(--warning); }
+  .badge-progress { background: var(--primary-light); color: var(--primary); }
+  .badge-done { background: var(--success-light); color: var(--success); }
+  .badge-future { background: var(--info-light); color: var(--info); }
+  .badge-high { background: var(--danger-light); color: var(--danger); }
+  .badge-medium { background: var(--warning-light); color: var(--warning); }
+  .badge-low { background: var(--gray-100); color: var(--gray-500); }
+
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: all; }
+  .modal {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    width: 90%; max-width: 520px; max-height: 85vh;
+    overflow-y: auto;
+    transform: translateY(20px);
+    transition: transform 0.2s;
+  }
+  .modal-overlay.active .modal { transform: translateY(0); }
+  .modal-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--gray-100);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .modal-header h3 { font-size: 1.05rem; font-weight: 600; }
+  .modal-close { background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--gray-400); padding: 4px; }
+  .modal-body { padding: 20px 24px; }
+  .modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--gray-100);
+    display: flex; gap: 10px; justify-content: flex-start;
+  }
+
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--gray-700); margin-bottom: 5px; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 10px 14px;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-family: inherit; font-size: 0.9rem;
+    transition: border-color 0.2s;
+    direction: rtl;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+  .form-group textarea { resize: vertical; min-height: 70px; }
+
+  .project-info {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius);
+    padding: 22px;
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+  .project-info h3 { color: var(--primary-dark); margin-bottom: 10px; font-size: 1.05rem; }
+  .project-info p { color: var(--gray-600); font-size: 0.9rem; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .progress-bar { height: 8px; background: var(--gray-200); border-radius: 4px; overflow: hidden; margin-top: 8px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--success)); border-radius: 4px; transition: width 0.5s ease; }
+
+  .empty-state { text-align: center; padding: 36px 20px; color: var(--gray-400); }
+  .empty-state .icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+  .timeline-item {
+    display: flex; gap: 14px; padding: 14px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-date { min-width: 100px; font-size: 0.85rem; color: var(--gray-500); padding-top: 2px; }
+  .timeline-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--primary); margin-top: 5px; flex-shrink: 0; }
+  .timeline-dot.done { background: var(--success); }
+  .timeline-dot.pending { background: var(--warning); }
+  .timeline-dot.future { background: var(--info); }
+  .timeline-content h4 { font-size: 0.93rem; font-weight: 600; margin-bottom: 3px; }
+  .timeline-content p { font-size: 0.83rem; color: var(--gray-500); }
+
+  .filter-btn.active { background: var(--primary-light) !important; color: var(--primary) !important; border-color: var(--primary) !important; }
+
+  .team-note {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+  .team-note strong { color: var(--warning); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  @media (max-width: 768px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .header { padding: 16px 20px; flex-direction: column; gap: 12px; text-align: center; }
+    .container { padding: 16px; }
+    .nav { padding: 0 12px; }
+    .nav button { padding: 12px 14px; font-size: 0.85rem; }
+  }
+  @media print {
+    .header-actions, .btn, .nav { display: none !important; }
+    .section { display: block !important; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>&#127959; תוכנית עבודה - הקמת הבית בירושלים</h1>
+    <div class="subtitle">פרויקט שיקומי לפצועי ונכי צה"ל</div>
+  </div>
+  <div class="header-actions">
+    <button onclick="exportData()">&#128229; ייצוא נתונים</button>
+    <button onclick="document.getElementById('importFile').click()">&#128228; ייבוא נתונים</button>
+    <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+    <button onclick="window.print()">&#128424; הדפסה</button>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="active" onclick="showSection('overview', this)">&#127968; סקירה כללית</button>
+  <button onclick="showSection('bureaucracy', this)">&#128203; בירוקרטיה ותשלומים</button>
+  <button onclick="showSection('suppliers', this)">&#128188; ספקים</button>
+  <button onclick="showSection('tasks', this)">&#9989; משימות עתידיות</button>
+  <button onclick="showSection('team', this)">&#128101; בניית צוות</button>
+  <button onclick="showSection('timeline', this)">&#128197; לוח זמנים</button>
+  <button onclick="showSection('settings', this)">&#9881;&#65039; הגדרות</button>
+</div>
+
+<div class="container">
+
+  <!-- ===== OVERVIEW ===== -->
+  <div id="section-overview" class="section active">
+    <div class="project-info">
+      <h3>&#128204; אודות הפרויקט</h3>
+      <p>הקמת הבית בירושלים מהווה מהלך אסטרטגי מרכזי בפעילות העמותה, שמטרתו להרחיב ולהעמיק את המענה הניתן <strong>לפצועי ונכי צה"ל</strong>. הבית עתיד לשמש כמרחב שיקומי, תומך ומקדם, המשלב פעילות טיפולית, חברתית ותעסוקתית, במטרה לחזק את יכולותיהם האישיות של המשתתפים ולסייע בתהליך השתלבותם המיטבית בחברה.</p>
+      <p style="margin-top:10px">התוכנית שמה דגש על תיאום בין כלל הגורמים המעורבים, ניהול יעיל של המשאבים, ובקרה שוטפת לאורך תהליך ההקמה. המסמך מבוסס על גישה מקצועית, מערכתית וגמישה.</p>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-number" id="statTotal">0</div>
+        <div class="stat-label">סה"כ משימות</div>
+      </div>
+      <div class="stat-card success">
+        <div class="stat-number" id="statDone">0</div>
+        <div class="stat-label">הושלמו</div>
+      </div>
+      <div class="stat-card warning">
+        <div class="stat-number" id="statProgress">0</div>
+        <div class="stat-label">בתהליך</div>
+      </div>
+      <div class="stat-card info">
+        <div class="stat-number" id="statFuture">0</div>
+        <div class="stat-label">עתידיות</div>
+      </div>
+      <div class="stat-card danger">
+        <div class="stat-number" id="statSuppliers">0</div>
+        <div class="stat-label">ספקים</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h2>&#128202; התקדמות כללית</h2></div>
+      <div class="card-body">
+        <div style="display:flex;justify-content:space-between;font-size:0.9rem;color:var(--gray-600)">
+          <span>התקדמות הפרויקט</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header"><h2>&#128293; דורש טיפול</h2></div>
+        <div class="card-body" id="urgentItems"></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h2>&#128197; פגישות קרובות עם ספקים</h2></div>
+        <div class="card-body" id="upcomingMeetings"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BUREAUCRACY ===== -->
+  <div id="section-bureaucracy" class="section">
     <div class="card">
       <div class="card-header">
         <h2>&#128203; בירוקרטיה והעברת תשלומים</h2>
