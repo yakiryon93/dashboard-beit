@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>××©×××¨× ×ª××× ××ª ×¢×××× - ××§××ª ××××ª ×××¨××©×××</title>
+<title>דשבורד תוכנית עבודה - הקמת הבית בירושלים</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
 
@@ -302,25 +302,75 @@
 
 <div class="header">
   <div>
-    <h1>&#127959; ×ª××× ××ª ×¢×××× - ××§××ª ××××ª ×××¨××©×××</h1>
-    <div class="subtitle">×¤×¨×××§× ×©××§××× ××¤×¦××¢× ×× ×× ×¦×"×</div>
+    <h1>&#127959;  36px 20px; color: var(--gray-400); }
+  .empty-state .icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+  .timeline-item {
+    display: flex; gap: 14px; padding: 14px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-date { min-width: 100px; font-size: 0.85rem; color: var(--gray-500); padding-top: 2px; }
+  .timeline-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--primary); margin-top: 5px; flex-shrink: 0; }
+  .timeline-dot.done { background: var(--success); }
+  .timeline-dot.pending { background: var(--warning); }
+  .timeline-dot.future { background: var(--info); }
+  .timeline-content h4 { font-size: 0.93rem; font-weight: 600; margin-bottom: 3px; }
+  .timeline-content p { font-size: 0.83rem; color: var(--gray-500); }
+
+  .filter-btn.active { background: var(--primary-light) !important; color: var(--primary) !important; border-color: var(--primary) !important; }
+
+  .team-note {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+  .team-note strong { color: var(--warning); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  @media (max-width: 768px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .header { padding: 16px 20px; flex-direction: column; gap: 12px; text-align: center; }
+    .container { padding: 16px; }
+    .nav { padding: 0 12px; }
+    .nav button { padding: 12px 14px; font-size: 0.85rem; }
+  }
+  @media print {
+    .header-actions, .btn, .nav { display: none !important; }
+    .section { display: block !important; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>&#127959; תוכנית עבודה - הקמת הבית בירושלים</h1>
+    <div class="subtitle">פרויקט שיקומי לפצועי ונכי צה"ל</div>
   </div>
   <div class="header-actions">
-    <button onclick="exportData()">&#128229; ×××¦×× × ×ª×× ××</button>
-    <button onclick="document.getElementById('importFile').click()">&#128228; ××××× × ×ª×× ××</button>
+    <button onclick="exportData()">&#128229; ייצוא נתונים</button>
+    <button onclick="document.getElementById('importFile').click()">&#128228; ייבוא נתונים</button>
     <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
-    <button onclick="window.print()">&#128424; ×××¤×¡×</button>
+    <button onclick="window.print()">&#128424; הדפסה</button>
   </div>
 </div>
 
 <div class="nav">
-  <button class="active" onclick="showSection('overview', this)">&#127968; ×¡×§××¨× ×××××ª</button>
-  <button onclick="showSection('bureaucracy', this)">&#128203; ×××¨××§×¨××× ××ª×©×××××</button>
-  <button onclick="showSection('suppliers', this)">&#128188; ×¡×¤×§××</button>
-  <button onclick="showSection('tasks', this)">&#9989; ××©××××ª ×¢×ª×××××ª</button>
-  <button onclick="showSection('team', this)">&#128101; ×× ×××ª ×¦×××ª</button>
-  <button onclick="showSection('timeline', this)">&#128197; ××× ××× ××</button>
-  <button onclick="showSection('settings', this)">&#9881;&#65039; ××××¨××ª</button>
+  <button class="active" onclick="showSection('overview', this)">&#127968; סקירה כללית</button>
+  <button onclick="showSection('bureaucracy', this)">&#128203; בירוקרטיה ותשלומים</button>
+  <button onclick="showSection('suppliers', this)">&#128188; ספקים</button>
+  <button onclick="showSection('tasks', this)">&#9989; משימות עתידיות</button>
+  <button onclick="showSection('team', this)">&#128101; בניית צוות</button>
+  <button onclick="showSection('timeline', this)">&#128197; לוח זמנים</button>
+  <button onclick="showSection('settings', this)">&#9881;&#65039; הגדרות</button>
 </div>
 
 <div class="container">
@@ -328,39 +378,39 @@
   <!-- ===== OVERVIEW ===== -->
   <div id="section-overview" class="section active">
     <div class="project-info">
-      <h3>&#128204; ×××××ª ××¤×¨×××§×</h3>
-      <p>××§××ª ××××ª ×××¨××©××× ××××× ×××× ××¡××¨××× ××¨××× ××¤×¢××××ª ××¢×××ª×, ×©×××¨×ª× ×××¨××× ××××¢×××§ ××ª ×××¢× × ×× ××ª× <strong>××¤×¦××¢× ×× ×× ×¦×"×</strong>. ××××ª ×¢×ª×× ××©××© ×××¨×× ×©××§×××, ×ª××× ×××§××, ×××©×× ×¤×¢××××ª ×××¤××××ª, ×××¨×ª××ª ××ª×¢×¡××§×ª××ª, ××××¨× ××××§ ××ª ××××××ª××× ××××©×××ª ×©× ×××©×ª×ª×¤×× ×××¡×××¢ ××ª×××× ××©×ª××××ª× ×××××××ª ××××¨×.</p>
-      <p style="margin-top:10px">××ª××× ××ª ×©×× ×××© ×¢× ×ª×××× ××× ××× ××××¨××× ×××¢××¨×××, × ×××× ××¢×× ×©× ×××©××××, ×××§×¨× ×©×××¤×ª ××××¨× ×ª×××× ×××§××. ×××¡×× ××××¡×¡ ×¢× ×××©× ××§×¦××¢××ª, ××¢×¨××ª××ª ×××××©×.</p>
+      <h3>&#128204; אודות הפרויקט</h3>
+      <p>הקמת הבית בירושלים מהווה מהלך אסטרטגי מרכזי בפעילות העמותה, שמטרתו להרחיב ולהעמיק את המענה הניתן <strong>לפצועי ונכי צה"ל</strong>. הבית עתיד לשמש כמרחב שיקומי, תומך ומקדם, המשלב פעילות טיפולית, חברתית ותעסוקתית, במטרה לחזק את יכולותיהם האישיות של המשתתפים ולסייע בתהליך השתלבותם המיטבית בחברה.</p>
+      <p style="margin-top:10px">התוכנית שמה דגש על תיאום בין כלל הגורמים המעורבים, ניהול יעיל של המשאבים, ובקרה שוטפת לאורך תהליך ההקמה. המסמך מבוסס על גישה מקצועית, מערכתית וגמישה.</p>
     </div>
 
     <div class="stats-bar">
       <div class="stat-card">
         <div class="stat-number" id="statTotal">0</div>
-        <div class="stat-label">×¡×"× ××©××××ª</div>
+        <div class="stat-label">סה"כ משימות</div>
       </div>
       <div class="stat-card success">
         <div class="stat-number" id="statDone">0</div>
-        <div class="stat-label">×××©×××</div>
+        <div class="stat-label">הושלמו</div>
       </div>
       <div class="stat-card warning">
         <div class="stat-number" id="statProgress">0</div>
-        <div class="stat-label">××ª××××</div>
+        <div class="stat-label">בתהליך</div>
       </div>
       <div class="stat-card info">
         <div class="stat-number" id="statFuture">0</div>
-        <div class="stat-label">×¢×ª×××××ª</div>
+        <div class="stat-label">עתידיות</div>
       </div>
       <div class="stat-card danger">
         <div class="stat-number" id="statSuppliers">0</div>
-        <div class="stat-label">×¡×¤×§××</div>
+        <div class="stat-label">ספקים</div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-header"><h2>&#128202; ××ª×§××××ª ×××××ª</h2></div>
+      <div class="card-header"><h2>&#128202; התקדמות כללית</h2></div>
       <div class="card-body">
         <div style="display:flex;justify-content:space-between;font-size:0.9rem;color:var(--gray-600)">
-          <span>××ª×§××××ª ××¤×¨×××§×</span>
+          <span>התקדמות הפרויקט</span>
           <span id="progressPercent">0%</span>
         </div>
         <div class="progress-bar">
@@ -371,11 +421,11 @@
 
     <div class="two-col">
       <div class="card">
-        <div class="card-header"><h2>&#128293; ×××¨×© ×××¤××</h2></div>
+        <div class="card-header"><h2>&#128293; דורש טיפול</h2></div>
         <div class="card-body" id="urgentItems"></div>
       </div>
       <div class="card">
-        <div class="card-header"><h2>&#128197; ×¤×××©××ª ×§×¨××××ª ×¢× ×¡×¤×§××</h2></div>
+        <div class="card-header"><h2>&#128197; פגישות קרובות עם ספקים</h2></div>
         <div class="card-body" id="upcomingMeetings"></div>
       </div>
     </div>
@@ -385,13 +435,13 @@
   <div id="section-bureaucracy" class="section">
     <div class="card">
       <div class="card-header">
-        <h2>&#128203; ×××¨××§×¨××× ×××¢××¨×ª ×ª×©×××××</h2>
-        <button class="btn btn-primary" onclick="openTaskModal(null,'bureaucracy')">+ ×××¡×£ ××©×××</button>
+        <h2>&#128203; בירוקרטיה והעברת תשלומים</h2>
+        <button class="btn btn-primary" onclick="openTaskModal(null,'bureaucracy')">+ הוסף משימה</button>
       </div>
       <div class="card-body">
-        <p style="color:var(--gray-500);font-size:0.88rem;margin-bottom:16px">××× ×××××× ××× ×××× ×××¤×× × ×¡×× ×× ××¨×©×× ××¦××¨× ××§××ª ××××ª ×××¤×¢××ª× ××ª×§×× ×.</p>
+        <p style="color:var(--gray-500);font-size:0.88rem;margin-bottom:16px">כלל ההיבטים המנהליים והפיננסיים הנדרשים לצורך הקמת הבית והפעלתו התקינה.</p>
         <table>
-          <thead><tr><th>××©×××</th><th>×¤××¨××</th><th>×¡××××¡</th><th>×¤×¢××××ª</th></tr></thead>
+          <thead><tr><th>משימה</th><th>פירוט</th><th>סטטוס</th><th>פעולות</th></tr></thead>
           <tbody id="bureaucracyBody"></tbody>
         </table>
       </div>
@@ -402,20 +452,20 @@
   <div id="section-suppliers" class="section">
     <div class="card">
       <div class="card-header">
-        <h2>&#128188; ×¡×¤×§×× ××× ×©× ××§×¦××¢</h2>
-        <button class="btn btn-primary" onclick="openSupplierModal()">+ ×××¡×£ ×¡×¤×§</button>
+        <h2>&#128188; ספקים ואנשי מקצוע</h2>
+        <button class="btn btn-primary" onclick="openSupplierModal()">+ הוסף ספק</button>
       </div>
       <div class="card-body">
         <div id="suppliersTableContainer">
           <table>
             <thead>
-              <tr><th>×¡×¤×§</th><th>×××© ×§×©×¨</th><th>×ª×××</th><th>×××¢× ×××¢×</th><th>××¦×¢×ª ××××¨</th><th>×¡××××¡</th><th>×¤×¢××××ª</th></tr>
+              <tr><th>ספק</th><th>איש קשר</th><th>תחום</th><th>מועד הגעה</th><th>הצעת מחיר</th><th>סטטוס</th><th>פעולות</th></tr>
             </thead>
             <tbody id="suppliersBody"></tbody>
           </table>
         </div>
         <div class="empty-state" id="suppliersEmpty" style="display:none">
-          <div class="icon">&#128119;</div><p>××× ×¡×¤×§×× ×¨×©××××</p>
+          <div class="icon">&#128119;</div><p>אין ספקים רשומים</p>
         </div>
       </div>
     </div>
@@ -425,12 +475,12 @@
   <div id="section-tasks" class="section">
     <div class="card">
       <div class="card-header">
-        <h2>&#9989; ××©××××ª ×¢×ª×××××ª</h2>
-        <button class="btn btn-primary" onclick="openTaskModal(null,'future')">+ ×××¡×£ ××©×××</button>
+        <h2>&#9989; משימות עתידיות</h2>
+        <button class="btn btn-primary" onclick="openTaskModal(null,'future')">+ הוסף משימה</button>
       </div>
       <div class="card-body">
         <table>
-          <thead><tr><th>××©×××</th><th>×¤××¨××</th><th>×¡××××¡</th><th>×¤×¢××××ª</th></tr></thead>
+          <thead><tr><th>משימה</th><th>פירוט</th><th>סטטוס</th><th>פעולות</th></tr></thead>
           <tbody id="futureBody"></tbody>
         </table>
       </div>
@@ -440,24 +490,24 @@
   <!-- ===== TEAM ===== -->
   <div id="section-team" class="section">
     <div class="team-note">
-      <strong>&#128101; ×× ×××ª ×¦×××ª</strong><br><br>
-      ××§××ª ×¦×××ª ××§×¦××¢× ×××¡××¨ ××× ××¨××× ××¨××× ×××¦×××ª ×¤×¢××××ª ××××ª. ×ª××× ×× ×××× ×××ª××¨, ××××¡ ××××©×¨× ×©× ×× ×©× ×¦×××ª ××ª××××× ×¨×××× ×××× ×××× ×©××§××, ×ª×¤×¢××, ×××××¡×××§× ×× ××××.<br><br>
-      ××© ××××××¨ ×ª×¤×§×××× ××ª×××× ×××¨×××ª ××¦××¨× ××¨××¨× ×××××× ×××××¨ ××¢×¨×× ××¢×××ª× ×××××× ××¤×¨×××§×.
+      <strong>&#128101; בניית צוות</strong><br><br>
+      הקמת צוות מקצועי ומסור היא מרכיב מרכזי בהצלחת פעילות הבית. תחום זה כולל איתור, גיוס והכשרה של אנשי צוות בתחומים רלוונטיים כגון שיקום, תפעול, לוגיסטיקה וניהול.<br><br>
+      יש להגדיר תפקידים ותחומי אחריות בצורה ברורה ולוודא חיבור לערכי העמותה ולחזון הפרויקט.
     </div>
     <div class="card">
       <div class="card-header">
-        <h2>&#128100; ×××¨× ×¦×××ª</h2>
-        <button class="btn btn-primary" onclick="openTeamModal()">+ ×××¡×£ ×××¨ ×¦×××ª</button>
+        <h2>&#128100; חברי צוות</h2>
+        <button class="btn btn-primary" onclick="openTeamModal()">+ הוסף חבר צוות</button>
       </div>
       <div class="card-body">
         <div id="teamTableContainer" style="display:none">
           <table>
-            <thead><tr><th>×©×</th><th>×ª×¤×§××</th><th>×××¤××</th><th>××××××</th><th>××¢×¨××ª</th><th>×¤×¢××××ª</th></tr></thead>
+            <thead><tr><th>שם</th><th>תפקיד</th><th>טלפון</th><th>אימייל</th><th>הערות</th><th>פעולות</th></tr></thead>
             <tbody id="teamBody"></tbody>
           </table>
         </div>
         <div class="empty-state" id="teamEmpty">
-          <div class="icon">&#128101;</div><p>××¨× ×××× × ×××¨× ×¦×××ª. ×××¥ "×××¡×£ ×××¨ ×¦×××ª" ×××ª×××</p>
+          <div class="icon">&#128101;</div><p>טרם הוזנו חברי צוות. לחץ "הוסף חבר צוות" להתחיל</p>
         </div>
       </div>
     </div>
@@ -466,10 +516,10 @@
   <!-- ===== TIMELINE ===== -->
   <div id="section-timeline" class="section">
     <div class="card">
-      <div class="card-header"><h2>&#128197; ××× ××× ×× - ×¦××¨ ××¨×× ×××××</h2></div>
+      <div class="card-header"><h2>&#128197; לוח זמנים - ציר כרונולוגי</h2></div>
       <div class="card-body" id="timelineContainer">
         <div class="empty-state" id="timelineEmpty" style="display:none">
-          <div class="icon">&#128338;</div><p>××× ×××¨××¢×× ×××× ×××× ××</p>
+          <div class="icon">&#128338;</div><p>אין אירועים בלוח הזמנים</p>
         </div>
       </div>
     </div>
@@ -478,25 +528,25 @@
   <!-- ===== SETTINGS ===== -->
   <div id="section-settings" class="section">
     <div class="card">
-      <div class="card-header"><h2>&#9881;&#65039; ××××¨××ª ×¤×¨×××§×</h2></div>
+      <div class="card-header"><h2>&#9881;&#65039; הגדרות פרויקט</h2></div>
       <div class="card-body">
         <div class="form-group">
-          <label>×©× ××¤×¨×××§×</label>
-          <input type="text" id="settingName" value="××§××ª ××××ª ×××¨××©×××">
+          <label>שם הפרויקט</label>
+          <input type="text" id="settingName" value="הקמת הבית בירושלים">
         </div>
         <div class="form-group">
-          <label>×ª××××¨</label>
-          <textarea id="settingDesc" rows="4">××§××ª ××××ª ×××¨××©××× ××××× ×××× ××¡××¨××× ××¨××× ××¤×¢××××ª ××¢×××ª×, ×©×××¨×ª× ×××¨××× ××××¢×××§ ××ª ×××¢× × ×× ××ª× ××¤×¦××¢× ×× ×× ×¦×"×.</textarea>
+          <label>תיאור</label>
+          <textarea id="settingDesc" rows="4">הקמת הבית בירושלים מהווה מהלך אסטרטגי מרכזי בפעילות העמותה, שמטרתו להרחיב ולהעמיק את המענה הניתן לפצועי ונכי צה"ל.</textarea>
         </div>
         <div class="form-group">
-          <label>×ª××¨×× ××ª×××</label>
+          <label>תאריך התחלה</label>
           <input type="date" id="settingStart">
         </div>
         <div class="form-group">
-          <label>×ª××¨×× ×¡××× ××©××¢×¨</label>
+          <label>תאריך סיום משוער</label>
           <input type="date" id="settingEnd">
         </div>
-        <button class="btn btn-primary" onclick="saveSettings()">&#128190; ×©×××¨ ××××¨××ª</button>
+        <button class="btn btn-primary" onclick="saveSettings()">&#128190; שמור הגדרות</button>
       </div>
     </div>
   </div>
@@ -507,32 +557,32 @@
 <div class="modal-overlay" id="taskModal">
   <div class="modal">
     <div class="modal-header">
-      <h3 id="taskModalTitle">×××¡×¤×ª ××©×××</h3>
+      <h3 id="taskModalTitle">הוספת משימה</h3>
       <button class="modal-close" onclick="closeModal('taskModal')">&times;</button>
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <label>×©× ×××©××× *</label>
+        <label>שם המשימה *</label>
         <input type="text" id="taskName">
       </div>
       <div class="form-group">
-        <label>×¤××¨××</label>
+        <label>פירוט</label>
         <textarea id="taskDetail"></textarea>
       </div>
       <div class="form-group">
-        <label>×¡××××¡</label>
+        <label>סטטוס</label>
         <select id="taskStatus">
-          <option value="progress">××ª××××</option>
-          <option value="done">×××©××</option>
-          <option value="future">×¢×ª×××</option>
-          <option value="pending">×××ª××</option>
+          <option value="progress">בתהליך</option>
+          <option value="done">הושלם</option>
+          <option value="future">עתידי</option>
+          <option value="pending">ממתין</option>
         </select>
       </div>
       <input type="hidden" id="taskSection" value="bureaucracy">
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary" onclick="saveTask()">&#128190; ×©×××¨</button>
-      <button class="btn btn-outline" onclick="closeModal('taskModal')">×××××</button>
+      <button class="btn btn-primary" onclick="saveTask()">&#128190; שמור</button>
+      <button class="btn btn-outline" onclick="closeModal('taskModal')">ביטול</button>
     </div>
   </div>
 </div>
@@ -541,55 +591,55 @@
 <div class="modal-overlay" id="supplierModal">
   <div class="modal">
     <div class="modal-header">
-      <h3 id="supplierModalTitle">×××¡×¤×ª ×¡×¤×§</h3>
+      <h3 id="supplierModalTitle">הוספת ספק</h3>
       <button class="modal-close" onclick="closeModal('supplierModal')">&times;</button>
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <label>×©× ×¡×¤×§ / ×××¨× *</label>
+        <label>שם ספק / חברה *</label>
         <input type="text" id="supplierName">
       </div>
       <div class="form-group">
-        <label>×××© ×§×©×¨</label>
+        <label>איש קשר</label>
         <input type="text" id="supplierContact">
       </div>
       <div class="form-group">
-        <label>×××¤××</label>
+        <label>טלפון</label>
         <input type="tel" id="supplierPhone">
       </div>
       <div class="form-group">
-        <label>×ª××× ×¤×¢××××ª</label>
+        <label>תחום פעילות</label>
         <input type="text" id="supplierField">
       </div>
       <div class="form-group">
-        <label>×××¢× ×××¢×</label>
-        <input type="text" id="supplierDate" placeholder="×ª××¨×× ××©×¢×">
+        <label>מועד הגעה</label>
+        <input type="text" id="supplierDate" placeholder="תאריך ושעה">
       </div>
       <div class="form-group">
-        <label>××¦×¢×ª ××××¨</label>
+        <label>הצעת מחיר</label>
         <select id="supplierQuote">
-          <option value="×××ª×× ××">×××ª×× ××</option>
-          <option value="××ª×§×××">××ª×§×××</option>
-          <option value="×××©×¨×">×××©×¨×</option>
-          <option value="×× × ××¨×©">×× × ××¨×©</option>
+          <option value="ממתינים">ממתינים</option>
+          <option value="התקבלה">התקבלה</option>
+          <option value="אושרה">אושרה</option>
+          <option value="לא נדרש">לא נדרש</option>
         </select>
       </div>
       <div class="form-group">
-        <label>×¡××××¡</label>
+        <label>סטטוס</label>
         <select id="supplierStatus">
-          <option value="progress">××ª××××</option>
-          <option value="done">×××©××</option>
-          <option value="future">×¢×ª×××</option>
+          <option value="progress">בתהליך</option>
+          <option value="done">הושלם</option>
+          <option value="future">עתידי</option>
         </select>
       </div>
       <div class="form-group">
-        <label>××¢×¨××ª</label>
+        <label>הערות</label>
         <textarea id="supplierNotes"></textarea>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary" onclick="saveSupplier()">&#128190; ×©×××¨</button>
-      <button class="btn btn-outline" onclick="closeModal('supplierModal')">×××××</button>
+      <button class="btn btn-primary" onclick="saveSupplier()">&#128190; שמור</button>
+      <button class="btn btn-outline" onclick="closeModal('supplierModal')">ביטול</button>
     </div>
   </div>
 </div>
@@ -598,34 +648,34 @@
 <div class="modal-overlay" id="teamModal">
   <div class="modal">
     <div class="modal-header">
-      <h3 id="teamModalTitle">×××¡×¤×ª ×××¨ ×¦×××ª</h3>
+      <h3 id="teamModalTitle">הוספת חבר צוות</h3>
       <button class="modal-close" onclick="closeModal('teamModal')">&times;</button>
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <label>×©× *</label>
+        <label>שם *</label>
         <input type="text" id="teamName">
       </div>
       <div class="form-group">
-        <label>×ª×¤×§××</label>
+        <label>תפקיד</label>
         <input type="text" id="teamRole">
       </div>
       <div class="form-group">
-        <label>×××¤××</label>
+        <label>טלפון</label>
         <input type="tel" id="teamPhone">
       </div>
       <div class="form-group">
-        <label>××××××</label>
+        <label>אימייל</label>
         <input type="email" id="teamEmail">
       </div>
       <div class="form-group">
-        <label>××¢×¨××ª</label>
+        <label>הערות</label>
         <textarea id="teamNotes"></textarea>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary" onclick="saveTeamMember()">&#128190; ×©×××¨</button>
-      <button class="btn btn-outline" onclick="closeModal('teamModal')">×××××</button>
+      <button class="btn btn-primary" onclick="saveTeamMember()">&#128190; שמור</button>
+      <button class="btn btn-outline" onclick="closeModal('teamModal')">ביטול</button>
     </div>
   </div>
 </div>
@@ -634,32 +684,32 @@
 // ===== DATA WITH PRE-POPULATED INFO =====
 let appData = {
   project: {
-    name: '××§××ª ××××ª ×××¨××©×××',
-    desc: '××§××ª ××××ª ×××¨××©××× ××××× ×××× ××¡××¨××× ××¨××× ××¤×¢××××ª ××¢×××ª×, ×©×××¨×ª× ×××¨××× ××××¢×××§ ××ª ×××¢× × ×× ××ª× ××¤×¦××¢× ×× ×× ×¦×"×.',
+    name: 'הקמת הבית בירושלים',
+    desc: 'הקמת הבית בירושלים מהווה מהלך אסטרטגי מרכזי בפעילות העמותה, שמטרתו להרחיב ולהעמיק את המענה הניתן לפצועי ונכי צה"ל.',
     start: '', end: ''
   },
   bureaucracy: [
-    { id: 'b1', name: '××¢××¨×ª ××©××× ××©××', detail: '×©×× ×× ××©×××× ×××××¨×ª ×××¦×¦×¢× ×ª×©×××', status: 'progress' },
-    { id: 'b2', name: '××¢××¨×ª ××©××× ×××'', detail: '×©×× ×× ××©×××× ×××××¨×ª ×××¦×¢× ×ª×©×××', status: 'progress' },
-    { id: 'b3', name: '××¢××¨×ª ××©××× ××¢×××ª', detail: '×©×× ×× ××©×××× ×××¡××¨×ª ×ª××××§× ×©×××¤×ª', status: 'progress' },
-    { id: 'b4', name: '××¢××¨×ª ××©××× ××', detail: '×©×× ×× ××©×××× ×××××¨×ª ×¡×¤×§ ×¤×¢××', status: 'progress' },
-    { id: 'b5', name: '××××× ××× ×', detail: '××¡××¨×ª ×¤××××¡× ×¢× ×©× ××¢×××ª×', status: 'progress' },
-    { id: 'b6', name: '×§× ×××¨×× ×××¢×××ª (×××§)', detail: '×¤×ª×××/××¢××¨×ª ×§× ×××¨×× ××¢×××× ××©××××', status: 'progress' },
-    { id: 'b7', name: '××¨× ×× ×', detail: '××¢××¨× ×¢× ×©× ××¢×××ª×', status: 'done' }
+    { id: 'b1', name: 'העברת חשבון חשמל', detail: 'שינוי משלמים והגדרת אמצעי תשלום', status: 'progress' },
+    { id: 'b2', name: 'העברת חשבון מים', detail: 'שינוי משלמים והגדרת אמצעי תשלום', status: 'progress' },
+    { id: 'b3', name: 'העברת חשבון מעלית', detail: 'שינוי משלמים והסדרת תחזוקה שוטפת', status: 'progress' },
+    { id: 'b4', name: 'העברת חשבון גז', detail: 'שינוי משלמים והגדרת ספק פעיל', status: 'progress' },
+    { id: 'b5', name: 'ביטוח מבנה', detail: 'הסדרת פוליסה על שם העמותה', status: 'progress' },
+    { id: 'b6', name: 'קו חירום למעלית (בזק)', detail: 'פתיחת/העברת קו חירום ועדכון משלמים', status: 'progress' },
+    { id: 'b7', name: 'ארנונה', detail: 'העברה על שם העמותה', status: 'done' }
   ],
   suppliers: [
-    { id: 's1', name: '×××¨ (×ª×§×©××¨×ª)', contact: '×××¨', phone: '0504441595', field: '××× ××¨× × ××ª×§×©××¨×ª', date: '12.4.26', quote: '×××ª×× ××', status: 'progress', notes: '' },
-    { id: 's2', name: '×××¨×× ×¤×¨×××××ª', contact: '×××¨××', phone: '0546483942', field: '×¤×¨×××× ×××¨×¤×¡×ª', date: '12.4.26 10:00-11:00', quote: '×××ª×× ××', status: 'progress', notes: '' },
-    { id: 's3', name: '×××¢× ×××¤××¨', contact: '×××¢×', phone: '0536240422', field: '×©××¤××¦×× ××××¡', date: '12.4.26 12:00', quote: '×××ª×× ××', status: 'progress', notes: '' },
-    { id: 's4', name: '× ×ª× ×× ××©××', contact: '× ×ª× ××', phone: '0536805065', field: '××××§×ª ×××××ª ××©××', date: '12.4.26 11:00', quote: '×××ª×× ××', status: 'progress', notes: '' },
-    { id: 's5', name: '×¨×× ×× ×¨×\'××', contact: '×¨××', phone: '0525707062', field: '×××¨ ×××©×¨', date: '×××××ª × ×©××××ª', quote: '×××ª×× ××', status: 'progress', notes: '' },
-    { id: 's6', name: '×¡××× × ××§×××', contact: '×¡×××', phone: '0509883988', field: '× ××§×××', date: '×× × ×§××¢', quote: '×× × ××¨×©', status: 'future', notes: '' }
+    { id: 's1', name: 'דור (תקשורת)', contact: 'דור', phone: '0504441595', field: 'אינטרנט ותקשורת', date: '12.4.26', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's2', name: 'דורון פרגולות', contact: 'דורון', phone: '0546483942', field: 'פרגולה למרפסת', date: '12.4.26 10:00-11:00', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's3', name: 'אלעד אופיר', contact: 'אלעד', phone: '0536240422', field: 'שיפוצים וגבס', date: '12.4.26 12:00', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's4', name: 'נתנאל חשמל', contact: 'נתנאל', phone: '0536805065', field: 'בדיקת לוחות חשמל', date: '12.4.26 11:00', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's5', name: 'רמי אנרג\'ים', contact: 'רמי', phone: '0525707062', field: 'חדר כושר', date: 'מידות נשלחות', quote: 'ממתינים', status: 'progress', notes: '' },
+    { id: 's6', name: 'סיגל ניקיון', contact: 'סיגל', phone: '0509883988', field: 'ניקיון', date: 'לא נקבע', quote: 'לא נדרש', status: 'future', notes: '' }
   ],
   futureTasks: [
-    { id: 'f1', name: '××¤×¢××ª ×××¨×××', detail: '××¡××¨×ª ×ª×¤×¢×× ××××©××¨××', status: 'progress' },
-    { id: 'f2', name: '×××× ×ª ×××¤××', detail: '××¨××©××ª ×××××', status: 'done' },
-    { id: 'f3', name: '××§××ª ×¡××× ××ª', detail: '×ª×× ×× ×××¦×¢××ª ××××¨', status: 'progress' },
-    { id: 'f4', name: '×§×××ª ××¦×¢××ª ××××¨ × ××¡×¤××ª', detail: '××©××××ª ×¡×¤×§××', status: 'progress' }
+    { id: 'f1', name: 'הפעלת הבריכה', detail: 'הסדרת תפעול ואישורים', status: 'progress' },
+    { id: 'f2', name: 'הזמנת מטפים', detail: 'דרישות ביטוח', status: 'done' },
+    { id: 'f3', name: 'הקמת סאונות', detail: 'תכנון והצעות מחיר', status: 'progress' },
+    { id: 'f4', name: 'קבלת הצעות מחיר נוספות', detail: 'השוואת ספקים', status: 'progress' }
   ],
   team: []
 };
@@ -683,10 +733,10 @@ document.querySelectorAll('.modal-overlay').forEach(o => {
 
 function statusBadge(s) {
   const map = {
-    progress: '<span class="badge badge-progress">××ª××××</span>',
-    done: '<span class="badge badge-done">×××©××</span>',
-    future: '<span class="badge badge-future">×¢×ª×××</span>',
-    pending: '<span class="badge badge-pending">×××ª××</span>'
+    progress: '<span class="badge badge-progress">בתהליך</span>',
+    done: '<span class="badge badge-done">הושלם</span>',
+    future: '<span class="badge badge-future">עתידי</span>',
+    pending: '<span class="badge badge-pending">ממתין</span>'
   };
   return map[s] || s;
 }
@@ -696,7 +746,7 @@ function openTaskModal(id, section) {
   editingSection = section || 'bureaucracy';
   document.getElementById('taskSection').value = editingSection;
   editingId = id || null;
-  document.getElementById('taskModalTitle').textContent = id ? '×¢×¨×××ª ××©×××' : '×××¡×¤×ª ××©×××';
+  document.getElementById('taskModalTitle').textContent = id ? 'עריכת משימה' : 'הוספת משימה';
   if (id) {
     const list = editingSection === 'bureaucracy' ? appData.bureaucracy : appData.futureTasks;
     const item = list.find(x => x.id === id);
@@ -715,7 +765,7 @@ function openTaskModal(id, section) {
 
 function saveTask() {
   const name = document.getElementById('taskName').value.trim();
-  if (!name) { alert('× × ××××× ×©× ××©×××'); return; }
+  if (!name) { alert('נא להזין שם משימה'); return; }
   const section = document.getElementById('taskSection').value;
   const list = section === 'bureaucracy' ? appData.bureaucracy : appData.futureTasks;
   const task = {
@@ -735,7 +785,7 @@ function saveTask() {
 }
 
 function deleteTask(id, section) {
-  if (!confirm('×××××§ ××ª ×××©×××?')) return;
+  if (!confirm('למחוק את המשימה?')) return;
   if (section === 'bureaucracy') appData.bureaucracy = appData.bureaucracy.filter(x => x.id !== id);
   else appData.futureTasks = appData.futureTasks.filter(x => x.id !== id);
   renderAll();
@@ -772,7 +822,7 @@ function renderFutureTasks() {
 // ===== SUPPLIERS =====
 function openSupplierModal(id) {
   editingId = id || null;
-  document.getElementById('supplierModalTitle').textContent = id ? '×¢×¨×××ª ×¡×¤×§' : '×××¡×¤×ª ×¡×¤×§';
+  document.getElementById('supplierModalTitle').textContent = id ? 'עריכת ספק' : 'הוספת ספק';
   if (id) {
     const s = appData.suppliers.find(x => x.id === id);
     if (s) {
@@ -781,13 +831,13 @@ function openSupplierModal(id) {
       document.getElementById('supplierPhone').value = s.phone || '';
       document.getElementById('supplierField').value = s.field || '';
       document.getElementById('supplierDate').value = s.date || '';
-      document.getElementById('supplierQuote').value = s.quote || '×××ª×× ××';
+      document.getElementById('supplierQuote').value = s.quote || 'ממתינים';
       document.getElementById('supplierStatus').value = s.status || 'progress';
       document.getElementById('supplierNotes').value = s.notes || '';
     }
   } else {
     ['supplierName','supplierContact','supplierPhone','supplierField','supplierDate','supplierNotes'].forEach(x => document.getElementById(x).value = '');
-    document.getElementById('supplierQuote').value = '×××ª×× ××';
+    document.getElementById('supplierQuote').value = 'ממתינים';
     document.getElementById('supplierStatus').value = 'progress';
   }
   document.getElementById('supplierModal').classList.add('active');
@@ -795,7 +845,7 @@ function openSupplierModal(id) {
 
 function saveSupplier() {
   const name = document.getElementById('supplierName').value.trim();
-  if (!name) { alert('× × ××××× ×©× ×¡×¤×§'); return; }
+  if (!name) { alert('נא להזין שם ספק'); return; }
   const supplier = {
     id: editingId || Date.now().toString(),
     name,
@@ -818,7 +868,7 @@ function saveSupplier() {
 }
 
 function deleteSupplier(id) {
-  if (!confirm('×××××§ ××ª ××¡×¤×§?')) return;
+  if (!confirm('למחוק את הספק?')) return;
   appData.suppliers = appData.suppliers.filter(x => x.id !== id);
   renderAll();
 }
@@ -837,7 +887,7 @@ function renderSuppliers() {
       <td>${s.contact || '-'}${s.phone ? '<br><a href="tel:' + s.phone + '" style="color:var(--primary);font-size:0.82rem">' + s.phone + '</a>' : ''}</td>
       <td>${s.field || '-'}</td>
       <td>${s.date || '-'}</td>
-      <td><span class="badge ${s.quote === '×××©×¨×' ? 'badge-done' : s.quote === '××ª×§×××' ? 'badge-progress' : s.quote === '×× × ××¨×©' ? 'badge-low' : 'badge-pending'}">${s.quote}</span></td>
+      <td><span class="badge ${s.quote === 'אושרה' ? 'badge-done' : s.quote === 'התקבלה' ? 'badge-progress' : s.quote === 'לא נדרש' ? 'badge-low' : 'badge-pending'}">${s.quote}</span></td>
       <td>${statusBadge(s.status)}</td>
       <td>
         <button class="btn btn-outline btn-sm" onclick="openSupplierModal('${s.id}')">&#9998;</button>
@@ -850,7 +900,7 @@ function renderSuppliers() {
 // ===== TEAM =====
 function openTeamModal(id) {
   editingId = id || null;
-  document.getElementById('teamModalTitle').textContent = id ? '×¢×¨×××ª ×××¨ ×¦×××ª' : '×××¡×¤×ª ×××¨ ×¦×××ª';
+  document.getElementById('teamModalTitle').textContent = id ? 'עריכת חבר צוות' : 'הוספת חבר צוות';
   if (id) {
     const m = appData.team.find(x => x.id === id);
     if (m) {
@@ -868,7 +918,7 @@ function openTeamModal(id) {
 
 function saveTeamMember() {
   const name = document.getElementById('teamName').value.trim();
-  if (!name) { alert('× × ××××× ×©×'); return; }
+  if (!name) { alert('נא להזין שם'); return; }
   const member = {
     id: editingId || Date.now().toString(),
     name,
@@ -888,7 +938,7 @@ function saveTeamMember() {
 }
 
 function deleteTeamMember(id) {
-  if (!confirm('×××××§?')) return;
+  if (!confirm('למחוק?')) return;
   appData.team = appData.team.filter(x => x.id !== id);
   renderAll();
 }
@@ -922,11 +972,11 @@ function renderTimeline() {
   const empty = document.getElementById('timelineEmpty');
   const items = [];
 
-  appData.bureaucracy.forEach(t => items.push({ title: t.name, detail: t.detail, status: t.status, section: '×××¨××§×¨×××' }));
+  appData.bureaucracy.forEach(t => items.push({ title: t.name, detail: t.detail, status: t.status, section: 'בירוקרטיה' }));
   appData.suppliers.forEach(s => {
-    items.push({ title: s.name + ' - ' + s.field, detail: s.contact + ' ' + s.phone, status: s.status, section: '×¡×¤×§××', dateText: s.date });
+    items.push({ title: s.name + ' - ' + s.field, detail: s.contact + ' ' + s.phone, status: s.status, section: 'ספקים', dateText: s.date });
   });
-  appData.futureTasks.forEach(t => items.push({ title: t.name, detail: t.detail, status: t.status, section: '××©××××ª' }));
+  appData.futureTasks.forEach(t => items.push({ title: t.name, detail: t.detail, status: t.status, section: 'משימות' }));
 
   container.querySelectorAll('.timeline-item').forEach(el => el.remove());
   if (items.length === 0) { empty.style.display = 'block'; return; }
@@ -970,21 +1020,21 @@ function renderStats() {
   const urgentEl = document.getElementById('urgentItems');
   const inProgress = allTasks.filter(t => t.status === 'progress');
   if (inProgress.length === 0) {
-    urgentEl.innerHTML = '<div class="empty-state"><div class="icon">&#128077;</div><p>××× ××××¤×!</p></div>';
+    urgentEl.innerHTML = '<div class="empty-state"><div class="icon">&#128077;</div><p>הכל מטופל!</p></div>';
   } else {
     urgentEl.innerHTML = inProgress.slice(0, 7).map(t => `
       <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--gray-100)">
         <span style="font-size:0.87rem">${t.name}</span>
-        <span class="badge badge-progress">××ª××××</span>
+        <span class="badge badge-progress">בתהליך</span>
       </div>
     `).join('');
   }
 
   // Upcoming supplier meetings
   const meetingsEl = document.getElementById('upcomingMeetings');
-  const upcoming = appData.suppliers.filter(s => s.date && s.date !== '×× × ×§××¢' && s.status !== 'done');
+  const upcoming = appData.suppliers.filter(s => s.date && s.date !== 'לא נקבע' && s.status !== 'done');
   if (upcoming.length === 0) {
-    meetingsEl.innerHTML = '<div class="empty-state"><div class="icon">&#128197;</div><p>××× ×¤×××©××ª ×§×¨××××ª</p></div>';
+    meetingsEl.innerHTML = '<div class="empty-state"><div class="icon">&#128197;</div><p>אין פגישות קרובות</p></div>';
   } else {
     meetingsEl.innerHTML = upcoming.map(s => `
       <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--gray-100)">
@@ -1004,7 +1054,7 @@ function saveSettings() {
   appData.project.desc = document.getElementById('settingDesc').value.trim();
   appData.project.start = document.getElementById('settingStart').value;
   appData.project.end = document.getElementById('settingEnd').value;
-  alert('×××××¨××ª × ×©××¨×!');
+  alert('ההגדרות נשמרו!');
 }
 
 // ===== EXPORT / IMPORT =====
@@ -1029,9 +1079,9 @@ function importData(event) {
       if (data.bureaucracy || data.suppliers || data.futureTasks) {
         appData = { ...appData, ...data };
         renderAll();
-        alert('×× ×ª×× ×× ××××× ×××¦×××!');
-      } else { alert('×§×××¥ ×× ×ª×§××'); }
-    } catch { alert('×©×××× ××§×¨×××ª ××§×××¥'); }
+        alert('הנתונים יובאו בהצלחה!');
+      } else { alert('קובץ לא תקין'); }
+    } catch { alert('שגיאה בקריאת הקובץ'); }
   };
   reader.readAsText(file);
   event.target.value = '';
